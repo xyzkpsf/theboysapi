@@ -1,0 +1,6 @@
+export const THEME_COLOR = {
+  BACKGROUND_COLOR: "#151515",
+  PRIMARY: "#301B3F",
+  SECONDARY: "#3C415C",
+  TERTIARY: "#B4A5A5",
+};
