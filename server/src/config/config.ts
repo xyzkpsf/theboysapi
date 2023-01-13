@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const SERVER_PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
+const SERVER_PORT = 3000;
 
 export const config = {
     mongo: {
