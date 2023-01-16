@@ -4,9 +4,9 @@
   "description": "This is the central repo for www.theboysapi.com",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npm run start",
+    "start": "npm run start",
     "install-client": "cd client && npm install && npm run start && cd ..",
-    "install-server": "cd server && npm install && cd .. ",
+    "install-server": "cd server && npm install && npm run build",
     "heroku-postbuild": "npm run install-client && npm run install-server"
   },
   "repository": {
