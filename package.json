@@ -4,7 +4,7 @@
   "description": "This is the central repo for www.theboysapi.com",
   "main": "index.js",
   "scripts": {
-    "install": "cd client/ && npm install && cd.. && cd server/ && npm install",
+    "install": "concurrently 'cd client/ && npm install' 'cd server/ && npm install'",
     "build": "concurrently 'cd client/ && npm run build' 'cd server/ && npm run build'",
     "start": "concurrently 'cd client/ && npm run start' 'cd server/ && npm run start'"
   },
