@@ -6,7 +6,9 @@
   "scripts": {
     "install": "concurrently 'cd client/ && npm install' 'cd server/ && npm install'",
     "build": "npm install && (cd server/ && npm run build)",
-    "start": "concurrently 'cd client/ && npm run start' 'cd server/ && npm run start'"
+    "start-client": "cd client/ && npm run start",
+    "start-server": "cd server/ && npm run start",
+    "start": "npm install && concurrently 'npm run start-client' 'npm run start-server'"
   },
   "repository": {
     "type": "git",
