@@ -1,4 +1,4 @@
-export const baseUrl = "http://www.theboysapi.com/api";
+export const baseUrl = "https://www.theboysapi.com/api";
 
 export const totalCharacters = 73;
 

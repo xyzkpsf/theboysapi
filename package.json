@@ -4,11 +4,11 @@
   "description": "This is the central repo for www.theboysapi.com",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start",
-    "install-client": "cd client && npm install --only=dev && npm install && npm run start && cd ..",
-    "install-server": "cd server && npm install && npm run build",
+    "start": "npm start --prefix server",
+    "install-client": "cd client && npm install && npm run build && cd ..",
+    "install-server": "cd server && npm install --only=dev && npm install && npm run build && cd .. ",
     "heroku-postbuild": "npm run install-client && npm run install-server"
-  },
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xyzkpsf/theboysapi.git"

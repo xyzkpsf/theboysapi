@@ -9,6 +9,6 @@ export const config = {
         url: process.env.MONGODB_URI || 'mongodb://localhost:27017/Boys'
     },
     server: {
-        port: SERVER_PORT
+        port: parseInt(<string>process.env.PORT, 10) || SERVER_PORT
     }
 };

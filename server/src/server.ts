@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import path from 'path';
 import { config } from './config/config';
 import characterRoutes from './routes/Character';
 import episodeRoutes from './routes/Episode';
@@ -18,6 +19,7 @@ mongoose
 const startServer = () => {
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
+    app.use(express.static(path.join(__dirname, "/../../client/build")));
 
     /** Rules of our API */
     app.use((req, res, next) => {
@@ -38,6 +40,9 @@ const startServer = () => {
 
     app.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
 
+    app.get("*", (req, res) => {
+         res.sendFile(path.join(__dirname + "/../../client/build/index.html"));
+         });
     /** Error handling */
     app.use((req, res, next) => {
         const error = new Error('Not found');
