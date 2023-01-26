@@ -26,20 +26,22 @@ const mapAffiliation = (affiliation: affiliationObject[]): JSX.Element[] => {
   ));
 };
 
-const mapSeen = (seen: nameAndUrl): JSX.Element => {
-  return (
-    <Typography component={"span"} variant="body2">
-      <Link
-        href={seen.url}
-        color="inherit"
-        underline="none"
-        rel="noopener"
-        target="_blank"
-      >
-        {seen.name}
-      </Link>
-    </Typography>
-  );
+const mapSeen = (seen: nameAndUrl): JSX.Element | undefined => {
+    if (seen && seen.url && seen.name) {
+        return (
+            <Typography component={"span"} variant="body2">
+              <Link
+                href={seen.url}
+                color="inherit"
+                underline="none"
+                rel="noopener"
+                target="_blank"
+              >
+                {seen.name}
+              </Link>
+            </Typography>
+          );
+    }
 };
 
 const CharacterCard = ({ data }: CharacterCardProps) => {
