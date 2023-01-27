@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { styled, alpha } from "@mui/material/styles";
 import { THEME_COLOR } from "../Style";
 import AppBar from "@mui/material/AppBar";
@@ -21,15 +23,26 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Docs", "About"];
+const navItems = ["Doc", "About"];
 
 export default function DrawerAppBar(props: Props) {
+  const navigate = useNavigate();
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleNavClick = (item: string | null) => {
+    if (item) {
+      navigate(`/${item.toLowerCase()}`);
+    } else {
+      navigate(`/`);
+    }
+
+  }
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -81,7 +94,14 @@ export default function DrawerAppBar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" }, height: "50px" }}
           >
-            <img src={logo} alt={'logo'} height={'50px'}/>
+            <img
+              style={{cursor:'pointer'}}
+              src={logo}
+              alt={'logo'}
+              height={'50px'}
+              onClick={() => {
+                  handleNavClick(null);
+                }}/>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
@@ -89,7 +109,7 @@ export default function DrawerAppBar(props: Props) {
                 key={item}
                 sx={{ color: "#fff" }}
                 onClick={() => {
-                  console.log(`Click on ${item}`);
+                  handleNavClick(item);
                 }}
               >
                 {item}
