@@ -21,13 +21,13 @@ export const formatResult = (res: any[]) => {
     return res.length === 1 ? res[0] : res;
 };
 
-const isPostiveInter = (s: string) => {
+const isPositiveInter = (s: string) => {
     const num = Number(s);
     return Number.isInteger(Number(num)) && Number(num) > 0;
 };
 
 export const handleIdInput = (idInput: string) => {
-    return idInput.includes('[') ? JSON.parse(idInput) : idInput.split(',').filter((i) => isPostiveInter(i));
+    return idInput.includes('[') ? JSON.parse(idInput) : idInput.split(',').filter((i) => isPositiveInter(i));
 };
 
 // todo:remove any in model type

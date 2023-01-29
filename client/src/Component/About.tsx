@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import {THEME_COLOR} from "../Style";
 
+//todo: unity golbal style
 function About() {
     return (
       <Box sx={{

@@ -6,7 +6,7 @@ import Logo from "./Component/Logo";
 import TopBar from "./Component/TopBar";
 import Home from "./Component/Home";
 import About from "./Component/About";
-import Doc from "./Component/Doc";
+import Docs from "./Component/Docs";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/doc" element={<Doc />} />
+        <Route path="/docs" element={<Docs />} />
       </Routes>
       </QueryClientProvider>
   );
