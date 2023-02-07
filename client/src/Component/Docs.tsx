@@ -20,11 +20,17 @@ const subTitleIdMap: { [key: string]: string } = {
 };
 function Docs() {
   return (
-    <>
+    <Box
+      sx={{
+        marginTop: '50px',
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: THEME_COLOR.BACKGROUND_COLOR
+      }}
+    >
       <Drawer
         sx={{
-          marginTop: '50px',
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, marginTop: '50px', backgroundColor: THEME_COLOR.BACKGROUND_COLOR }
         }}
         variant="permanent"
         anchor="left"
@@ -40,7 +46,7 @@ function Docs() {
                     }}
                   >
                     <Link href={`/docs/#${subTitleIdMap[text]}`} underline="none">
-                      <ListItemText primary={<Typography variant="body1">{text}</Typography>} />
+                      <ListItemText primary={<Typography style={{ fontSize: '13px' }}>{text}</Typography>} />
                     </Link>
                   </Box>
                 ) : (
@@ -52,13 +58,10 @@ function Docs() {
         </List>
       </Drawer>
       <Box
-        component="main"
         sx={{
-          marginTop: '50px',
-          height: '100%vh',
+          // height: '100%vh',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
           paddingLeft: '24px',
           paddingRight: '24px',
           textAlign: 'left',
@@ -82,15 +85,22 @@ function Docs() {
         </div>
         <Typography variant="h6">{'  '}Request and Response Format</Typography>
         <Typography variant="body1">{'  '}This api only accepts https get requests and all responses are in JSON format.</Typography>
-        <Typography variant="h6" id={'availableResource'}>
-          {'  '}Available Sources
-        </Typography>
+        <div id={'availableResource'}>{'  '}Available Sources</div>
         <Typography variant="body1">
           <Box component="span" sx={{ display: 'block' }}>
             {/*// todo display : here*/}
             characters, affiliations, episodes
           </Box>
         </Typography>
+        <Box
+          id={'filters'}
+          sx={{
+            marginBottom: '30px'
+          }}
+        >
+          <Typography variant="h6">You can apply filters to all the three available resources.</Typography>
+
+        </Box>
         <div id={'pagination'}>
           <Typography variant="h6">{'  '}Pagination</Typography>
         </div>
@@ -105,17 +115,8 @@ function Docs() {
             this limit, you will be blocked from accessing the API for 24 hours.
           </Typography>
         </Box>
-
-        <Box
-          id={'filters'}
-          sx={{
-            marginBottom: '30px'
-          }}
-        >
-          <Typography variant="h6">You can apply filters to all the three available resources.</Typography>
-        </Box>
       </Box>
-    </>
+    </Box>
   );
 }
 
