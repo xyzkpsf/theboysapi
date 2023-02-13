@@ -35,14 +35,16 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
       <Box
         sx={{
           alignItems: 'center',
-          width: '500px',
+          width: '220px',
+          height: '200px',
           display: 'flex',
           flexDirection: 'column',
-          borderRadius: '3px'
+          borderRadius: '8px',
+          backgroundColor: '#DDDDDD !important'
         }}
       >
         <Box
-          bgcolor="whilte"
+          bgcolor="white"
           sx={{
             alignItems: 'center',
             width: '300px',
@@ -53,7 +55,18 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
             backgroundColor: 'white !important'
           }}
         >
-          <img src={data.image} alt="" className="characterImg" />
+          {/* <img src={data.image} alt="" className="characterImg" /> */}
+          <Box
+            component="img"
+            sx={{
+              width: '200px',
+              height: '150px',
+              objectFit: 'cover',
+              borderRadius: '12px'
+            }}
+            alt={data.name}
+            src={data.image}
+          />
           <Box
             sx={{
               width: '200px',
@@ -66,14 +79,6 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
               {data.name}
             </Link>
             <Typography variant="body2">Status:&nbsp;{data.status}</Typography>
-
-            {/* need to pass down an array here and map name and url */}
-            <Typography variant="body2">Affiliation:</Typography>
-            <Typography variant="h6">{mapAffiliation(data.affiliation)}</Typography>
-            <Typography variant="body2">First Seen:</Typography>
-            <Typography variant="body2">{mapSeen(data.first_seen)}</Typography>
-            <Typography variant="body2">Last Seen:</Typography>
-            <Typography variant="body2">{mapSeen(data.last_seen)}</Typography>
           </Box>
         </Box>
       </Box>
