@@ -3,83 +3,86 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { affiliationObject, nameAndUrl, CharacterCardProps } from '../Utils/types';
-import { backdropClasses } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
+import { CharacterCardProps, characterType } from '../Utils/types';
 
-const mapAffiliation = (affiliation: affiliationObject[]): JSX.Element[] => {
-  // todo: distinguish former affilication and not former
-  return (affiliation || []).map((a) => (
-    <Typography variant="body2" key={a.name}>
-      <Link href={a.url} color="inherit" underline="none" rel="noopener" target="_blank">
-        {a.name}
-      </Link>
-    </Typography>
-  ));
-};
-
-const mapSeen = (seen: nameAndUrl): JSX.Element | undefined => {
-  if (seen && seen.url && seen.name) {
+const mapSpices = (species: string[]): JSX.Element[] => {
+  return species.map((s) => {
     return (
       <Typography component={'span'} variant="body2">
-        <Link href={seen.url} color="inherit" underline="none" rel="noopener" target="_blank">
-          {seen.name}
-        </Link>
+        {s}
       </Typography>
     );
-  }
+  });
+};
+
+const mapStatusAndSpices = (data: characterType): JSX.Element => {
+  const iconColor = data.status === 'Alive' ? '#228B22' : '#FF0000';
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
+      }}
+    >
+      <CircleIcon
+        sx={{
+          color: iconColor,
+          fontSize: '15px',
+          marginRight: '5px'
+        }}
+      />
+      <Typography component={'span'} variant="body2">
+        {data.status}
+      </Typography>
+    </Box>
+  );
 };
 
 const CharacterCard = ({ data }: CharacterCardProps) => {
   return (
-    <Grid item sm={12} md={6} lg={4} key={data.id}>
+    <Grid item sm={6} md={4} lg={3} key={data.id} justifyContent={'center'} alignItems={'center'}>
       <Box
+        bgcolor={'#DDDDDD'}
         sx={{
-          alignItems: 'center',
-          width: '220px',
-          height: '200px',
+          width: '230px',
+          height: '220px',
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '8px',
-          backgroundColor: '#DDDDDD !important'
+          backgroundColor: '#DDDDDD !important',
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
       >
         <Box
-          bgcolor="white"
+          component="img"
           sx={{
-            alignItems: 'center',
-            width: '300px',
-            height: '400px',
+            width: '200px',
+            height: '150px',
+            objectFit: 'cover',
+            borderRadius: '12px'
+          }}
+          alt={data.name}
+          src={data.image}
+        />
+        <Box
+          sx={{
+            width: '200px',
+            marginTop: '5px',
             display: 'flex',
             flexDirection: 'column',
-            borderRadius: '3px',
-            backgroundColor: 'white !important'
+            fontSize: '20px'
           }}
         >
-          {/* <img src={data.image} alt="" className="characterImg" /> */}
-          <Box
-            component="img"
-            sx={{
-              width: '200px',
-              height: '150px',
-              objectFit: 'cover',
-              borderRadius: '12px'
-            }}
-            alt={data.name}
-            src={data.image}
-          />
-          <Box
-            sx={{
-              width: '200px',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-          >
-            {/* todo: need to map the original url into href here */}
-            <Link href={data.url} variant="h5" color="inherit" underline="none" rel="noopener" target="_blank">
-              {data.name}
-            </Link>
-            <Typography variant="body2">Status:&nbsp;{data.status}</Typography>
-          </Box>
+          <Link href={data.url} variant="h6" color="inherit" underline="none" rel="noopener" target="_blank">
+            {data.name}
+          </Link>
+          {mapStatusAndSpices(data)}
+          {/* <Button variant="contained" href={data.url} target="_blank">
+            More Info
+          </Button> */}
         </Box>
       </Box>
     </Grid>

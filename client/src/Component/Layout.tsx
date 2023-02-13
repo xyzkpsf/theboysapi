@@ -1,14 +1,14 @@
-import {useQuery} from "react-query";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import CharacterCard from "./CharacterCard";
-import {baseUrl, getRandomInteger} from "../Utils/utils";
-import {characterType} from "../Utils/types";
+import { useQuery } from 'react-query';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import CharacterCard from './CharacterCard';
+import { baseUrl, getRandomInteger } from '../Utils/utils';
+import { characterType } from '../Utils/types';
 
 const fetchCharacters = async () => {
   const numArray = getRandomInteger();
   const response = await fetch(`${baseUrl}/character/${numArray}`);
-    return await response.json();
+  return await response.json();
 };
 
 function Layout() {
@@ -16,22 +16,18 @@ function Layout() {
   // todo: handle rerender issue
   // toso: resize
 
-  const { data, status, isPreviousData } = useQuery(
-    "characters",
-    fetchCharacters,
-    {
-      staleTime: 10 * (60 * 1000),
-      cacheTime: 15 * (60 * 1000),
-    }
-  );
+  const { data, status, isPreviousData } = useQuery('characters', fetchCharacters, {
+    staleTime: 10 * (60 * 1000),
+    cacheTime: 15 * (60 * 1000)
+  });
 
   // todo: style loading here
-  if (status === "loading") {
+  if (status === 'loading') {
     return <div>Loading...</div>;
   }
 
   return (
-    <Container maxWidth={false} sx={{marginTop:"25px"}}>
+    <Container maxWidth={false} sx={{ marginTop: '25px' }}>
       <Grid container spacing={5}>
         {data.map((item: characterType) => (
           <CharacterCard data={item} key={item.id} />

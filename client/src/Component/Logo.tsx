@@ -4,8 +4,6 @@ import Typography from '@mui/material/Typography';
 import logo from '../assets/logo.svg';
 import { THEME_COLOR } from '../Style';
 
-const LogoIcon = (props: any) => <svg xmlns="../assets/logo.svg" fill={props.fill} className={props.class}></svg>;
-
 function Logo() {
   return (
     <Box
@@ -21,7 +19,6 @@ function Logo() {
       }}
     >
       <img src={logo} alt={'logo'} style={{ height: 180, stroke: THEME_COLOR.SECONDARY }} />
-      {/*<LogoIcon fill={THEME_COLOR.SECONDARY}/>*/}
     </Box>
   );
 }
