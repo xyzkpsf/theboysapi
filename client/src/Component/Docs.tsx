@@ -22,15 +22,15 @@ function Docs() {
   return (
     <Box
       sx={{
-        marginTop: '50px',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: THEME_COLOR.BACKGROUND_COLOR
+        backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
+        height: `calc(100vh - 80px)`
       }}
     >
       <Drawer
         sx={{
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, marginTop: '50px', backgroundColor: THEME_COLOR.BACKGROUND_COLOR }
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, marginTop: '64px', height: `calc(100vh - 64px)`, backgroundColor: THEME_COLOR.BACKGROUND_COLOR, position: 'absolute' }
         }}
         variant="permanent"
         anchor="left"
@@ -59,11 +59,11 @@ function Docs() {
       </Drawer>
       <Box
         sx={{
-          // height: '100%vh',
+          height: '100%vh',
           display: 'flex',
           flexDirection: 'column',
-          paddingLeft: '24px',
-          paddingRight: '24px',
+          // paddingLeft: '24px',
+          // paddingRight: '24px',
           textAlign: 'left',
           alignItems: 'start',
           marginLeft: `${drawerWidth}px`,
@@ -99,7 +99,6 @@ function Docs() {
           }}
         >
           <Typography variant="h6">You can apply filters to all the three available resources.</Typography>
-
         </Box>
         <div id={'pagination'}>
           <Typography variant="h6">{'  '}Pagination</Typography>

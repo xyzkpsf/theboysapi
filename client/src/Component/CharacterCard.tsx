@@ -6,12 +6,13 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import { CharacterCardProps, characterType } from '../Utils/types';
+import Paper from '@mui/material/Paper';
 
 const CharacterCard = ({ data }: CharacterCardProps) => {
   const [hover, sethover] = useState(false);
 
   const mapStatusAndSpices = (data: characterType): JSX.Element => {
-    const iconColor = data.status === 'Alive' ? '#228B22' : '#FF0000';
+    const iconColor = data.status === 'Deceased' ? '#FF0000' : '#228B22';
     return (
       <Box
         sx={{
@@ -20,8 +21,6 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
           alignItems: 'center',
           height: '20px'
         }}
-        onMouseEnter={() => sethover(true)}
-        onMouseLeave={() => sethover(false)}
       >
         {!hover && (
           <>
@@ -32,16 +31,25 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
                 marginRight: '5px'
               }}
             />
-            <Typography component={'span'} variant="body2">
+            <Typography component={'span'} variant="body1">
               {data.status}
             </Typography>
           </>
         )}
         {hover && (
           <Button
+            className={'more-info-button'}
             sx={{
-              height: '20px'
+              height: '20px',
+              backgroundColor: '#3C415C',
+              color: 'white',
+              border: '1px solid white',
+              '&:hover': {
+                color: '#3C415C',
+                backgroundColor: 'white'
+              }
             }}
+            // color="inherit"
             variant="outlined"
             href={data.url}
             target="_blank"
@@ -77,6 +85,8 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
           justifyContent: 'center',
           alignItems: 'center'
         }}
+        onMouseEnter={() => sethover(true)}
+        onMouseLeave={() => sethover(false)}
       >
         <Box
           component="img"
