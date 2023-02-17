@@ -70,49 +70,72 @@ function Docs() {
           width: { sm: `calc(100% - ${drawerWidth}px)` }
         }}
       >
-        <Typography variant="h2">Documentation</Typography>
+        <Box
+          sx={{
+            height: `calc(100vh - 80px)`,
+            overflow: 'auto',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <Box
+            sx={{
+              width: '80%',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <Typography variant="h2">Documentation</Typography>
 
-        <Typography variant="h3">Introduction</Typography>
-        <Typography variant="h6">This documentation offers a quick overview of the API, and a few examples of how to use it. Please take a look before proceeding and have fun!</Typography>
-        <Typography variant="h3">Overview</Typography>
-        <div id={'baseUrl'}>
-          <Typography variant="h6">
-            {'  '}Base Url
-            <Box component="span" sx={{ display: 'block' }}>
-              Get https://www.theboysapi.com/api/
+            <Typography variant="h3">Introduction</Typography>
+            <Typography variant="h6">This documentation offers a quick overview of the API, and a few examples of how to use it. Please take a look before proceeding and have fun!</Typography>
+            <Typography variant="h3">Overview</Typography>
+            <div id={'baseUrl'}>
+              <Typography variant="h6">
+                {'  '}Base Url
+                <Box component="span" sx={{ display: 'block' }}>
+                  Get https://www.theboysapi.com/api/
+                </Box>
+              </Typography>
+            </div>
+            <Typography variant="h6">{'  '}Request and Response Format</Typography>
+            <Typography variant="body1">{'  '}This api only accepts https get requests and all responses are in JSON format.</Typography>
+            <div id={'availableResource'}>{'  '}Available Sources</div>
+            <Typography variant="body1">
+              <Box component="span" sx={{ display: 'block' }}>
+                {/*// todo display : here*/}
+                characters, affiliations, episodes
+              </Box>
+            </Typography>
+            <Box
+              id={'filters'}
+              sx={{
+                marginBottom: '30px'
+              }}
+            >
+              <Typography variant="h6">You can apply filters to all the three available resources.</Typography>
+              <Typography variant="h6">2 You can apply filters to all the three available resources.</Typography>
+              <Typography variant="h6">3 You can apply filters to all the three available resources.</Typography>
+              <Typography variant="h6">4 You can apply filters to all the three available resources.</Typography>
+              <Typography variant="h6">5 You can apply filters to all the three available resources.</Typography>
+              <Typography variant="h6">6 You can apply filters to all the three available resources.</Typography>
+              <Typography variant="h6">7 You can apply filters to all the three available resources.</Typography>
             </Box>
-          </Typography>
-        </div>
-        <Typography variant="h6">{'  '}Request and Response Format</Typography>
-        <Typography variant="body1">{'  '}This api only accepts https get requests and all responses are in JSON format.</Typography>
-        <div id={'availableResource'}>{'  '}Available Sources</div>
-        <Typography variant="body1">
-          <Box component="span" sx={{ display: 'block' }}>
-            {/*// todo display : here*/}
-            characters, affiliations, episodes
+            <div id={'pagination'}>
+              <Typography variant="h6">{'  '}Pagination</Typography>
+            </div>
+            <Box
+              id={'rateLimiting'}
+              sx={{
+                marginBottom: '30px'
+              }}
+            >
+              <Typography variant="h6">
+                This is a free and open source API, which has no authentication to access. However, in order to prevent abuse, i have implemented a rate limiting of 10,000 requests per day, if you
+                exceed this limit, you will be blocked from accessing the API for 24 hours.
+              </Typography>
+            </Box>
           </Box>
-        </Typography>
-        <Box
-          id={'filters'}
-          sx={{
-            marginBottom: '30px'
-          }}
-        >
-          <Typography variant="h6">You can apply filters to all the three available resources.</Typography>
-        </Box>
-        <div id={'pagination'}>
-          <Typography variant="h6">{'  '}Pagination</Typography>
-        </div>
-        <Box
-          id={'rateLimiting'}
-          sx={{
-            marginBottom: '30px'
-          }}
-        >
-          <Typography variant="h6">
-            This is a free and open source API, which has no authentication to access. However, in order to prevent abuse, i have implemented a rate limiting of 10,000 requests per day, if you exceed
-            this limit, you will be blocked from accessing the API for 24 hours.
-          </Typography>
         </Box>
       </Box>
     </Box>
