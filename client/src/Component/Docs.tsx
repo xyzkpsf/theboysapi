@@ -62,8 +62,6 @@ function Docs() {
           height: '100%vh',
           display: 'flex',
           flexDirection: 'column',
-          // paddingLeft: '24px',
-          // paddingRight: '24px',
           textAlign: 'left',
           alignItems: 'start',
           marginLeft: `${drawerWidth}px`,
@@ -86,18 +84,58 @@ function Docs() {
             }}
           >
             <Typography variant="h2">Documentation</Typography>
+            <br />
+            <Typography variant="h4">Introduction</Typography>
+            <br />
+            <Typography variant="body1">This documentation offers a quick overview of the API, and a few examples of how to use it. Please take a look before proceeding and have fun!</Typography>
+            <br />
+            <Typography variant="h4">Overview</Typography>
+            <br />
 
-            <Typography variant="h3">Introduction</Typography>
-            <Typography variant="h6">This documentation offers a quick overview of the API, and a few examples of how to use it. Please take a look before proceeding and have fun!</Typography>
-            <Typography variant="h3">Overview</Typography>
+            <Typography variant="h6">Authentication</Typography>
+            <br />
+            <Typography variant="body1">This API provides data to users without requiring any authentication or API key.</Typography>
+
+            <br />
+            <Typography variant="h6">Rate Limit</Typography>
+            <br />
+            <Typography variant="body1">
+              To prevent abuse and ensure that the API can continue to serve all users, there is a rate limit in place. The rate limit for this API is 10,000 requests per IP address per day. If you
+              exceed this limit, you will receive a 429 Too Many Requests error response. If you think you need a higher rate limit, please contact me.
+            </Typography>
+            <br />
+
+            <br />
+            <Typography variant="h6">Request</Typography>
+            <br />
+            <Typography variant="body1">This API only accepts HTTP GET requests.</Typography>
+            <br />
             <div id={'baseUrl'}>
-              <Typography variant="h6">
-                {'  '}Base Url
-                <Box component="span" sx={{ display: 'block' }}>
-                  Get https://www.theboysapi.com/api/
-                </Box>
-              </Typography>
+              <Typography variant="h6">Base URL</Typography>
             </div>
+            <br />
+            <Box component="span" sx={{ display: 'block' }}>
+              https://www.theboysapi.com/api
+            </Box>
+            <br />
+            <Typography variant="body1">There are three available resources:</Typography>
+            <br />
+            <Box component="span" sx={{ display: 'block' }}>
+              https://www.theboysapi.com/api/characters https://www.theboysapi.com/api/affiliations https://www.theboysapi.com/api/episodes
+            </Box>
+            <br />
+            <Typography variant="h6">Filters</Typography>
+            <br />
+
+            <br />
+            <Typography variant="h6">Response</Typography>
+            <br />
+            <Typography variant="body1">The response will be in JSON format and will contain the requested data. Here's an example of a response:</Typography>
+
+            <Typography variant="h6"></Typography>
+            <br />
+            <Typography variant="body1"></Typography>
+
             <Typography variant="h6">{'  '}Request and Response Format</Typography>
             <Typography variant="body1">{'  '}This api only accepts https get requests and all responses are in JSON format.</Typography>
             <div id={'availableResource'}>{'  '}Available Sources</div>
@@ -112,15 +150,7 @@ function Docs() {
               sx={{
                 marginBottom: '30px'
               }}
-            >
-              <Typography variant="h6">You can apply filters to all the three available resources.</Typography>
-              <Typography variant="h6">2 You can apply filters to all the three available resources.</Typography>
-              <Typography variant="h6">3 You can apply filters to all the three available resources.</Typography>
-              <Typography variant="h6">4 You can apply filters to all the three available resources.</Typography>
-              <Typography variant="h6">5 You can apply filters to all the three available resources.</Typography>
-              <Typography variant="h6">6 You can apply filters to all the three available resources.</Typography>
-              <Typography variant="h6">7 You can apply filters to all the three available resources.</Typography>
-            </Box>
+            ></Box>
             <div id={'pagination'}>
               <Typography variant="h6">{'  '}Pagination</Typography>
             </div>
