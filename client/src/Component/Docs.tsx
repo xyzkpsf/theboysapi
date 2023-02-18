@@ -9,6 +9,56 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link/Link';
 
+const responseExample = JSON.stringify(
+  {
+    id: 8,
+    name: 'Homelander',
+    real_name: 'John',
+    species: ['Supe'],
+    citizenship: 'American',
+    gender: 'Male',
+    status: 'Alive',
+    affiliation: [
+      {
+        name: 'The Seven',
+        url: 'https://www.theboysapi.com/api/affiliation/2',
+        is_former: false
+      }
+    ],
+    families: [
+      {
+        name: 'Jonah Vogelbaum',
+        url: 'https://www.theboysapi.com/api/character/57',
+        relationship: 'father figure'
+      },
+      {
+        name: 'Soldier Boy',
+        url: 'https://www.theboysapi.com/api/character/20',
+        relationship: 'biological father'
+      },
+      {
+        name: 'Ryan Butcher',
+        url: 'https://www.theboysapi.com/api/character/47',
+        relationship: 'son'
+      }
+    ],
+    portrayed: ['Antony Starr'],
+    first_seen: {
+      name: 'The Name of the Game',
+      url: 'https://www.theboysapi.com/api/episode/1'
+    },
+    last_seen: {
+      name: 'The Instant White-Hot Wild',
+      url: 'https://www.theboysapi.com/api/episode/24'
+    },
+    season: ['1', '2', '3'],
+    image: 'https://theboysapi.s3.us-west-2.amazonaws.com/character_8.jpg',
+    url: 'https://www.theboysapi.com/api/character/8'
+  },
+  null,
+  2
+);
+
 const drawerWidth = 200;
 const subTitle = ['Base URL', 'Available Resource', 'Pagination', 'Filters', 'Rate Limiting'];
 const subTitleIdMap: { [key: string]: string } = {
@@ -94,7 +144,7 @@ function Docs() {
 
             <Typography variant="h6">Authentication</Typography>
             <br />
-            <Typography variant="body1">This API provides data to users without requiring any authentication or API key.</Typography>
+            <Typography variant="body1">This is a free open source project that does not require any authentication or API key to access.</Typography>
 
             <br />
             <Typography variant="h6">Rate Limit</Typography>
@@ -103,8 +153,6 @@ function Docs() {
               To prevent abuse and ensure that the API can continue to serve all users, there is a rate limit in place. The rate limit for this API is 10,000 requests per IP address per day. If you
               exceed this limit, you will receive a 429 Too Many Requests error response. If you think you need a higher rate limit, please contact me.
             </Typography>
-            <br />
-
             <br />
             <Typography variant="h6">Request</Typography>
             <br />
@@ -120,17 +168,24 @@ function Docs() {
             <br />
             <Typography variant="body1">There are three available resources:</Typography>
             <br />
-            <Box component="span" sx={{ display: 'block' }}>
-              https://www.theboysapi.com/api/characters https://www.theboysapi.com/api/affiliations https://www.theboysapi.com/api/episodes
+            <Box component="span" sx={{ display: 'block', marginBottom: '5px' }}>
+              Characters (link to character schema): https://www.theboysapi.com/api/character
             </Box>
-            <br />
-            <Typography variant="h6">Filters</Typography>
-            <br />
+            <Box component="span" sx={{ display: 'block', marginBottom: '5px' }}>
+              Affiliations (link to character affiliation): https://www.theboysapi.com/api/affiliation
+            </Box>
+            <Box component="span" sx={{ display: 'block' }}>
+              Episodes (link to character episode): https://www.theboysapi.com/api/episode
+            </Box>
 
             <br />
             <Typography variant="h6">Response</Typography>
             <br />
             <Typography variant="body1">The response will be in JSON format and will contain the requested data. Here's an example of a response:</Typography>
+            <br />
+            <Typography variant="body1">Get https://www.theboysapi.com/api/character/8</Typography>
+            <br />
+            <Box component="pre">{responseExample}</Box>
 
             <Typography variant="h6"></Typography>
             <br />
@@ -161,8 +216,8 @@ function Docs() {
               }}
             >
               <Typography variant="h6">
-                This is a free and open source API, which has no authentication to access. However, in order to prevent abuse, i have implemented a rate limiting of 10,000 requests per day, if you
-                exceed this limit, you will be blocked from accessing the API for 24 hours.
+                This is a free open source project that does not require authentication to access. However, in order to prevent abuse, i have implemented a rate limiting of 10,000 requests per day, if
+                you exceed this limit, you will be blocked from accessing the API for 24 hours.
               </Typography>
             </Box>
           </Box>
