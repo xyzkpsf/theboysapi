@@ -56,6 +56,14 @@ const responseExample = {
   url: 'https://www.theboysapi.com/api/character/8'
 };
 
+const paginationAttributes = [
+  'items: An array of items returned in the current page.',
+  'page: The current page number.',
+  'total_pages: The total number of pages.',
+  'next_page: The URL of the next page if it exists, otherwise null.',
+  'previous_page: The URL of the previous page if it exists, otherwise null.'
+];
+
 const drawerWidth = 200;
 const subTitle = ['Base URL', 'Available Resource', 'Pagination', 'Filters', 'Rate Limiting'];
 const subTitleIdMap: { [key: string]: string } = {
@@ -166,13 +174,13 @@ function Docs() {
             <Typography variant="body1">There are three available resources:</Typography>
             <br />
             <Box component="span" sx={{ display: 'block', marginBottom: '5px' }}>
-              Characters (link to character schema): https://www.theboysapi.com/api/character
+              Characters (add bullet point and link): https://www.theboysapi.com/api/character
             </Box>
             <Box component="span" sx={{ display: 'block', marginBottom: '5px' }}>
-              Affiliations (link to character affiliation): https://www.theboysapi.com/api/affiliation
+              Affiliations (add bullet point and link): https://www.theboysapi.com/api/affiliation
             </Box>
             <Box component="span" sx={{ display: 'block' }}>
-              Episodes (link to character episode): https://www.theboysapi.com/api/episode
+              Episodes (add bullet point and link): https://www.theboysapi.com/api/episode
             </Box>
 
             <br />
@@ -189,8 +197,33 @@ function Docs() {
             <br />
             <Typography variant="h6">Pagination</Typography>
             <br />
+            <Typography variant="body1">
+              The response format of the API will return a maximum of 20 items per page. If the number of items in the result set is greater than 20, the response will contain a pagination object with
+              details on the current page, the total number of pages and the next and previous pages.
+            </Typography>
+            <br />
+            <Typography variant="body1">The response will be a JSON object with the following properties:</Typography>
+            <br />
+            <List style={{ listStyle: 'disc' }} sx={{ marginLeft: '20px' }}>
+              {paginationAttributes.map((text) => (
+                <ListItem key={text} style={{ display: 'list-item' }}>
+                  <Typography variant="body1">{text}</Typography>
+                </ListItem>
+              ))}
+            </List>
+            <br />
             <Typography variant="body1"></Typography>
+            <br />
+            <Typography variant="h6">Example Response</Typography>
+            <br />
+            <Typography sx={{ background: 'black' }} variant="body1">
+              GET https://www.theboysapi.com/api/character
+            </Typography>
+            <br />
+            <Typography variant="h6">SHOW EXAMPLE RESPONSE HERE</Typography>
+            <br />
 
+            {/* todo: add pagination example */}
             {/* {
               "metadata": {
                 "count": 826,
@@ -208,7 +241,10 @@ function Docs() {
             <br />
             <Typography variant="body1"></Typography>
 
-
+            <br />
+            <Typography variant="h6"></Typography>
+            <br />
+            <Typography variant="body1"></Typography>
           </Box>
         </Box>
       </Box>
