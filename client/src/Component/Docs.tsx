@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import ReactJson from 'react-json-view';
 import { THEME_COLOR } from '../Style';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
@@ -9,55 +10,51 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link/Link';
 
-const responseExample = JSON.stringify(
-  {
-    id: 8,
-    name: 'Homelander',
-    real_name: 'John',
-    species: ['Supe'],
-    citizenship: 'American',
-    gender: 'Male',
-    status: 'Alive',
-    affiliation: [
-      {
-        name: 'The Seven',
-        url: 'https://www.theboysapi.com/api/affiliation/2',
-        is_former: false
-      }
-    ],
-    families: [
-      {
-        name: 'Jonah Vogelbaum',
-        url: 'https://www.theboysapi.com/api/character/57',
-        relationship: 'father figure'
-      },
-      {
-        name: 'Soldier Boy',
-        url: 'https://www.theboysapi.com/api/character/20',
-        relationship: 'biological father'
-      },
-      {
-        name: 'Ryan Butcher',
-        url: 'https://www.theboysapi.com/api/character/47',
-        relationship: 'son'
-      }
-    ],
-    portrayed: ['Antony Starr'],
-    first_seen: {
-      name: 'The Name of the Game',
-      url: 'https://www.theboysapi.com/api/episode/1'
+const responseExample = {
+  id: 8,
+  name: 'Homelander',
+  real_name: 'John',
+  species: ['Supe'],
+  citizenship: 'American',
+  gender: 'Male',
+  status: 'Alive',
+  affiliation: [
+    {
+      name: 'The Seven',
+      url: 'https://www.theboysapi.com/api/affiliation/2',
+      is_former: false
+    }
+  ],
+  families: [
+    {
+      name: 'Jonah Vogelbaum',
+      url: 'https://www.theboysapi.com/api/character/57',
+      relationship: 'father figure'
     },
-    last_seen: {
-      name: 'The Instant White-Hot Wild',
-      url: 'https://www.theboysapi.com/api/episode/24'
+    {
+      name: 'Soldier Boy',
+      url: 'https://www.theboysapi.com/api/character/20',
+      relationship: 'biological father'
     },
-    season: ['1', '2', '3'],
-    image: 'https://theboysapi.s3.us-west-2.amazonaws.com/character_8.jpg',
-    url: 'https://www.theboysapi.com/api/character/8'
+    {
+      name: 'Ryan Butcher',
+      url: 'https://www.theboysapi.com/api/character/47',
+      relationship: 'son'
+    }
+  ],
+  portrayed: ['Antony Starr'],
+  first_seen: {
+    name: 'The Name of the Game',
+    url: 'https://www.theboysapi.com/api/episode/1'
   },
-  null,
-  2
-);
+  last_seen: {
+    name: 'The Instant White-Hot Wild',
+    url: 'https://www.theboysapi.com/api/episode/24'
+  },
+  season: ['1', '2', '3'],
+  image: 'https://theboysapi.s3.us-west-2.amazonaws.com/character_8.jpg',
+  url: 'https://www.theboysapi.com/api/character/8'
+};
 
 const drawerWidth = 200;
 const subTitle = ['Base URL', 'Available Resource', 'Pagination', 'Filters', 'Rate Limiting'];
@@ -183,43 +180,35 @@ function Docs() {
             <br />
             <Typography variant="body1">The response will be in JSON format and will contain the requested data. Here's an example of a response:</Typography>
             <br />
-            <Typography variant="body1">Get https://www.theboysapi.com/api/character/8</Typography>
+            <Typography sx={{ background: 'black' }} variant="body1">
+              GET https://www.theboysapi.com/api/character/8
+            </Typography>
             <br />
-            <Box component="pre">{responseExample}</Box>
+            <ReactJson src={responseExample} theme="pop" enableClipboard={false} displayDataTypes={false} />
 
+            <br />
+            <Typography variant="h6">Pagination</Typography>
+            <br />
+            <Typography variant="body1"></Typography>
+
+            {/* {
+              "metadata": {
+                "count": 826,
+                "pages": 42,
+                "next": "https://rickandmortyapi.com/api/character/?page=2",
+                "prev": null
+              },
+              "items": [
+                // ...
+              ]
+            } */}
+
+            <br />
             <Typography variant="h6"></Typography>
             <br />
             <Typography variant="body1"></Typography>
 
-            <Typography variant="h6">{'  '}Request and Response Format</Typography>
-            <Typography variant="body1">{'  '}This api only accepts https get requests and all responses are in JSON format.</Typography>
-            <div id={'availableResource'}>{'  '}Available Sources</div>
-            <Typography variant="body1">
-              <Box component="span" sx={{ display: 'block' }}>
-                {/*// todo display : here*/}
-                characters, affiliations, episodes
-              </Box>
-            </Typography>
-            <Box
-              id={'filters'}
-              sx={{
-                marginBottom: '30px'
-              }}
-            ></Box>
-            <div id={'pagination'}>
-              <Typography variant="h6">{'  '}Pagination</Typography>
-            </div>
-            <Box
-              id={'rateLimiting'}
-              sx={{
-                marginBottom: '30px'
-              }}
-            >
-              <Typography variant="h6">
-                This is a free open source project that does not require authentication to access. However, in order to prevent abuse, i have implemented a rate limiting of 10,000 requests per day, if
-                you exceed this limit, you will be blocked from accessing the API for 24 hours.
-              </Typography>
-            </Box>
+
           </Box>
         </Box>
       </Box>
