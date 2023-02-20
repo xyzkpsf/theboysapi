@@ -1,4 +1,5 @@
 import React from 'react';
+import SchemaTable from './SchemaTable';
 import Box from '@mui/material/Box';
 import ReactJson from 'react-json-view';
 import { THEME_COLOR } from '../Style';
@@ -222,6 +223,8 @@ function Docs() {
             <br />
             <Typography variant="h6">SHOW EXAMPLE RESPONSE HERE</Typography>
             <br />
+            <Typography variant="h6">SHow Example on choosing page parameter</Typography>
+            <br />
 
             {/* todo: add pagination example */}
             {/* {
@@ -235,6 +238,19 @@ function Docs() {
                 // ...
               ]
             } */}
+
+            <br />
+            <br />
+            <Typography variant="h4">Character</Typography>
+            <br />
+            <Typography variant="body1">There are total 73 available characters.</Typography>
+            <br />
+            <br />
+
+            <Typography variant="h6">Character schema</Typography>
+            <br />
+            <SchemaTable resource={'character'} />
+            <br />
 
             <br />
             <Typography variant="h6"></Typography>
