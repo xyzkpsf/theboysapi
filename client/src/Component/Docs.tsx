@@ -65,8 +65,36 @@ const paginationAttributes = [
   'previous_page: The URL of the previous page if it exists, otherwise null.'
 ];
 
+const menuItems = [
+  'Introduction',
+  'Authentication',
+  'Rate Limit',
+  'Request',
+  'Base URL',
+  'Response',
+  'Pagination',
+  'Character',
+  'character schema',
+  'get all characters',
+  'get one character',
+  'get multiple characters',
+  'get character by filters',
+  'Affiliation',
+  'affiliation schema',
+  'get all affiliations',
+  'get one affiliation',
+  'get multiple affiliations',
+  'get affiliation by filters',
+  'Episode',
+  'episode schema',
+  'get all episodes',
+  'get one episode',
+  'get multiple episodes',
+  'get episode by filters'
+];
+
 const drawerWidth = 200;
-const subTitle = ['Base URL', 'Available Resource', 'Pagination', 'Filters', 'Rate Limiting'];
+const subTitle = ['Introduction', 'Character', 'Affiliation', 'Episode'];
 const subTitleIdMap: { [key: string]: string } = {
   'Base URL': 'baseUrl',
   'Available Resource': 'availableResource',
@@ -92,21 +120,30 @@ function Docs() {
         anchor="left"
       >
         <List>
-          {['Introduction', 'Overview', 'Base URL', 'Available Resource', 'Pagination', 'Filters', 'Rate Limiting'].map((text, index) => (
+          {menuItems.map((text) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton dense>
                 {subTitle.includes(text) ? (
-                  <Box
-                    sx={{
-                      marginLeft: '10px'
-                    }}
-                  >
-                    <Link href={`/docs/#${subTitleIdMap[text]}`} underline="none">
+                  <Box>
+                    {/* <Link href={`/docs/#${subTitleIdMap[text]}`} underline="none">
                       <ListItemText primary={<Typography style={{ fontSize: '13px' }}>{text}</Typography>} />
-                    </Link>
+                    </Link> */}
+                    <ListItemText
+                      primary={text}
+                      sx={{
+                        fontSize: '20px',
+                        fontWeight: 'bold'
+                      }}
+                    />
                   </Box>
                 ) : (
-                  <ListItemText primary={text} />
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      marginLeft: '10px',
+                      fontSize: '10px'
+                    }}
+                  />
                 )}
               </ListItemButton>
             </ListItem>
@@ -144,8 +181,6 @@ function Docs() {
             <Typography variant="h4">Introduction</Typography>
             <br />
             <Typography variant="body1">This documentation offers a quick overview of the API, and a few examples of how to use it. Please take a look before proceeding and have fun!</Typography>
-            <br />
-            <Typography variant="h4">Overview</Typography>
             <br />
 
             <Typography variant="h6">Authentication</Typography>
@@ -245,14 +280,117 @@ function Docs() {
             <br />
             <Typography variant="body1">There are total 73 available characters.</Typography>
             <br />
-            <br />
 
             <Typography variant="h6">Character schema</Typography>
             <br />
-            <SchemaTable resource={'character'} />
+            <Box
+              sx={{
+                height: '900px'
+              }}
+            >
+              <SchemaTable resource={'character'} />
+            </Box>
             <br />
 
             <br />
+            <Typography variant="h6">Get all characters</Typography>
+            <br />
+            <Typography variant="body1">You can get all characters with below request</Typography>
+            <br />
+            <Typography variant="h6">Get one character by id</Typography>
+            <br />
+            <Typography variant="body1">You can get a specific character by the id. Check above example above(add a link to homelander)</Typography>
+            <br />
+            <Typography variant="h6">Get multiple characters</Typography>
+            <br />
+            <Typography variant="body1">You can get multiple characters by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
+            <Typography variant="body1">Noticed invalid id will be ignored</Typography>
+            <br />
+            <Typography variant="h6">Get character by filters</Typography>
+            <br />
+            <Typography variant="body1">You can get character by offering filters. Below are accepted filters for Characters</Typography>
+            <br />
+            <Typography variant="body1">Todo: Add a table of character filter here</Typography>
+            <br />
+
+            <br />
+            <br />
+            <Typography variant="h4">Affiliation</Typography>
+            <br />
+            <Typography variant="body1">There are total xx available affiliations.</Typography>
+            <br />
+
+            <Typography variant="h6">Affiliation schema</Typography>
+            <br />
+            <Box
+              sx={{
+                height: '900px'
+              }}
+            >
+              <SchemaTable resource={'affiliation'} />
+            </Box>
+            <br />
+
+            <br />
+            <Typography variant="h6">Get all affiliations</Typography>
+            <br />
+            <Typography variant="body1">You can get all affiliations with below request</Typography>
+            <br />
+            <Typography variant="h6">Get one affiliation by id</Typography>
+            <br />
+            <Typography variant="body1">You can get a specific affiliation by the id. Check above example above(add a link to homelander)</Typography>
+            <br />
+            <Typography variant="h6">Get multiple affiliations</Typography>
+            <br />
+            <Typography variant="body1">You can get multiple affiliations by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
+            <Typography variant="body1">Noticed invalid id will be ignored</Typography>
+            <br />
+            <Typography variant="h6">Get affiliation by filters</Typography>
+            <br />
+            <Typography variant="body1">You can get affiliation by offering filters. Below are accepted filters for Characters</Typography>
+            <br />
+            <Typography variant="body1">Todo: Add a table of affiliation filter here</Typography>
+            <br />
+
+            <br />
+            <br />
+            <Typography variant="h4">Episode</Typography>
+            <br />
+            <Typography variant="body1">There are total xx available affiliations.</Typography>
+            <br />
+
+            <Typography variant="h6">Episode schema</Typography>
+            <br />
+            <Box
+              sx={{
+                height: '900px'
+              }}
+            >
+              <SchemaTable resource={'episode'} />
+            </Box>
+            <br />
+
+            <br />
+            <Typography variant="h6">Get all episodes</Typography>
+            <br />
+            <Typography variant="body1">You can get all episodes with below request</Typography>
+            <br />
+            <Typography variant="h6">Get one episode by id</Typography>
+            <br />
+            <Typography variant="body1">You can get a specific episode by the id. Check above example above(add a link to homelander)</Typography>
+            <br />
+            <Typography variant="h6">Get multiple episodes</Typography>
+            <br />
+            <Typography variant="body1">You can get multiple episodes by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
+            <Typography variant="body1">Noticed invalid id will be ignored</Typography>
+            <br />
+            <Typography variant="h6">Get episode by filters</Typography>
+            <br />
+            <Typography variant="body1">You can get episode by offering filters. Below are accepted filters for Characters</Typography>
+            <br />
+            <Typography variant="body1">Todo: Add a table of episode filter here</Typography>
+            <br />
+
             <Typography variant="h6"></Typography>
             <br />
             <Typography variant="body1"></Typography>

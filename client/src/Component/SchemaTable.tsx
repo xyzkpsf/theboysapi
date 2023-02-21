@@ -14,7 +14,6 @@ const createSchemaData = (key: string, type: string, description: string) => {
 const characterData = (resource: string) => {
   switch (resource) {
     case 'character':
-    default:
       return [
         createSchemaData('id', 'integer', 'The unique identifier for the character.'),
         createSchemaData('name', 'string', 'The name of the character.'),
@@ -32,13 +31,37 @@ const characterData = (resource: string) => {
         createSchemaData('image', 'string', 'The image url of the character.'),
         createSchemaData('url', 'string', 'The url of the character.')
       ];
+    case 'affiliation':
+      return [
+        createSchemaData('id', 'integer', 'The unique identifier for the affiliation.'),
+        createSchemaData('name', 'string', 'The name of the affiliation.'),
+        createSchemaData('leader', 'object with name and url', 'The leader of the affiliation.'),
+        createSchemaData('members', 'array of character object', 'The members of the affiliation.'),
+        createSchemaData('former_members', 'array of character object', 'The former members of the affiliation.'),
+        createSchemaData('associate', 'array of object with name and url', 'The associated groups of the affiliation.'),
+        createSchemaData('url', 'string', 'The url of the affiliation.')
+      ];
+    default:
+      return [
+        createSchemaData('id', 'integer', 'The unique identifier for the episode.'),
+        createSchemaData('season', 'integer', 'The season of the episode.'),
+        createSchemaData('episode', 'integer', 'The number of the episode.'),
+        createSchemaData('title', 'string', 'The title of the episode.'),
+        createSchemaData('premiere_date', 'string', 'The air date of the episode.'),
+        createSchemaData('written_by', 'array of string', 'The writer(s) of the episode.'),
+        createSchemaData('directed_by', 'string', 'The director of the episode.'),
+        createSchemaData('preceded_by', 'object with name and url', 'The previous episode and its url.'),
+        createSchemaData('followed_by', 'object with name and url', 'The next episode and its url.'),
+        createSchemaData('image', 'string', 'The image url of the episode.'),
+        createSchemaData('url', 'string', 'The url of the episode.')
+      ];
   }
 };
 
 function SchemaTable({ resource }: { resource: string }) {
   return (
-    <TableContainer component={Paper} sx={{ height: '100%' }}>
-      <Table sx={{ height: '100%' }} aria-label={`${resource} schema table`}>
+    <TableContainer component={Paper}>
+      <Table aria-label={`${resource} schema table`}>
         <TableHead>
           <TableRow>
             <TableCell>Key</TableCell>
