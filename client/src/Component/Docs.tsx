@@ -1,8 +1,10 @@
-import React from 'react';
-import SchemaTable from './SchemaTable';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
 import ReactJson from 'react-json-view';
 import { THEME_COLOR } from '../Style';
+
+import SchemaTable from './SchemaTable';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -10,6 +12,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link/Link';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 const responseExample = {
   id: 8,
@@ -65,34 +68,6 @@ const paginationAttributes = [
   'previous_page: The URL of the previous page if it exists, otherwise null.'
 ];
 
-const menuItems = [
-  'Introduction',
-  'Authentication',
-  'Rate Limit',
-  'Request',
-  'Base URL',
-  'Response',
-  'Pagination',
-  'Character',
-  'character schema',
-  'get all characters',
-  'get one character',
-  'get multiple characters',
-  'get character by filters',
-  'Affiliation',
-  'affiliation schema',
-  'get all affiliations',
-  'get one affiliation',
-  'get multiple affiliations',
-  'get affiliation by filters',
-  'Episode',
-  'episode schema',
-  'get all episodes',
-  'get one episode',
-  'get multiple episodes',
-  'get episode by filters'
-];
-
 const drawerWidth = 200;
 const subTitle = ['Introduction', 'Character', 'Affiliation', 'Episode'];
 const subTitleIdMap: { [key: string]: string } = {
@@ -103,6 +78,78 @@ const subTitleIdMap: { [key: string]: string } = {
   'Rate Limiting': 'rateLimiting'
 };
 function Docs() {
+  const [openIntro, setOpenIntro] = useState(false);
+  const [openCharacter, setOpenCharacter] = useState(false);
+  const [openAffiliation, setOpenAffiliation] = useState(false);
+  const [openEpisode, setOpenEpisode] = useState(false);
+
+  const menuItems: { [key: string]: { open: boolean; handleClick: any; subMenu: string[] } } = {
+    Introduction: {
+      open: openIntro,
+      handleClick: () => {
+        setOpenIntro(!openIntro);
+      },
+      subMenu: ['Authentication', 'Rate Limit', 'Request', 'Base URL', 'Response', 'Pagination']
+    },
+    Character: {
+      open: openCharacter,
+      handleClick: () => {
+        setOpenCharacter(!openCharacter);
+      },
+      subMenu: ['Character schema', 'Get all characters', 'Get one character', 'Get multiple characters', 'Get character by filters']
+    },
+    Affiliation: {
+      open: openAffiliation,
+      handleClick: () => {
+        setOpenAffiliation(!openAffiliation);
+      },
+      subMenu: ['Affiliation schema', 'Get all affiliations', 'Get one affiliation', 'Get multiple affiliations', 'Get affiliation by filters']
+    },
+    Episode: {
+      open: openEpisode,
+      handleClick: () => {
+        setOpenEpisode(!openEpisode);
+      },
+      subMenu: ['Episode schema', 'Get all episodes', 'Get one episode', 'Get multiple episodes', 'Get episode by filters']
+    }
+  };
+
+  const renderMenu = () => {
+    return (
+      <List component="nav" aria-labelledby="menu_item">
+        {Object.keys(menuItems).map((key) => (
+          <>
+            <ListItemButton dense onClick={menuItems[key].handleClick}>
+              {/* todo: add link here */}
+              <ListItemText
+                primary={key}
+                key={`${key}-submenu`}
+                sx={{
+                  span: {
+                    fontSize: '20px'
+                  }
+                }}
+              />
+              {menuItems[key].open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={menuItems[key].open} timeout="auto">
+              {menuItems[key].subMenu.map((submenu) => (
+                <ListItemText
+                  primary={submenu}
+                  key={`${submenu}-submenu`}
+                  sx={{
+                    marginLeft: '20px',
+                    fontSize: '10px'
+                  }}
+                />
+              ))}
+            </Collapse>
+          </>
+        ))}
+      </List>
+    );
+  };
+
   return (
     <Box
       sx={{
@@ -119,36 +166,7 @@ function Docs() {
         variant="permanent"
         anchor="left"
       >
-        <List>
-          {menuItems.map((text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton dense>
-                {subTitle.includes(text) ? (
-                  <Box>
-                    {/* <Link href={`/docs/#${subTitleIdMap[text]}`} underline="none">
-                      <ListItemText primary={<Typography style={{ fontSize: '13px' }}>{text}</Typography>} />
-                    </Link> */}
-                    <ListItemText
-                      primary={text}
-                      sx={{
-                        fontSize: '20px',
-                        fontWeight: 'bold'
-                      }}
-                    />
-                  </Box>
-                ) : (
-                  <ListItemText
-                    primary={text}
-                    sx={{
-                      marginLeft: '10px',
-                      fontSize: '10px'
-                    }}
-                  />
-                )}
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        {renderMenu()}
       </Drawer>
       <Box
         sx={{
