@@ -83,34 +83,59 @@ function Docs() {
   const [openAffiliation, setOpenAffiliation] = useState(false);
   const [openEpisode, setOpenEpisode] = useState(false);
 
-  const menuItems: { [key: string]: { open: boolean; handleClick: any; subMenu: string[] } } = {
+  const menuItems: { [key: string]: { open: boolean; handleClick: any; subMenu: [string, string][] } } = {
     Introduction: {
       open: openIntro,
       handleClick: () => {
         setOpenIntro(!openIntro);
       },
-      subMenu: ['Authentication', 'Rate Limit', 'Request', 'Base URL', 'Response', 'Pagination']
+      subMenu: [
+        ['Authentication', 'authentication'],
+        ['Rate Limit', 'rateLimit'],
+        ['Request', 'request'],
+        ['Base URL', 'baseURL'],
+        ['Response', 'response'],
+        ['Pagination', 'pagination']
+      ]
     },
     Character: {
       open: openCharacter,
       handleClick: () => {
         setOpenCharacter(!openCharacter);
       },
-      subMenu: ['Character schema', 'Get all characters', 'Get one character', 'Get multiple characters', 'Get character by filters']
+      subMenu: [
+        ['Character schema', 'characterSchema'],
+        ['Get all characters', 'getAllCharacters'],
+        ['Get one character', 'getOneCharacter'],
+        ['Get multiple characters', 'getMultipleCharacters'],
+        ['Get character by filters', 'getCharacterByFilters']
+      ]
     },
     Affiliation: {
       open: openAffiliation,
       handleClick: () => {
         setOpenAffiliation(!openAffiliation);
       },
-      subMenu: ['Affiliation schema', 'Get all affiliations', 'Get one affiliation', 'Get multiple affiliations', 'Get affiliation by filters']
+      subMenu: [
+        ['Affiliation schema', 'affiliationSchema'],
+        ['Get all affiliations', 'getAllAffiliations'],
+        ['Get one affiliation', 'getOneAffiliation'],
+        ['Get multiple affiliations', 'getMultipleAffiliations'],
+        ['Get affiliation by filters', 'getAffiliationByFilters']
+      ]
     },
     Episode: {
       open: openEpisode,
       handleClick: () => {
         setOpenEpisode(!openEpisode);
       },
-      subMenu: ['Episode schema', 'Get all episodes', 'Get one episode', 'Get multiple episodes', 'Get episode by filters']
+      subMenu: [
+        ['Episode schema', 'episodeSchema'],
+        ['Get all episodes', 'getAllEpisodes'],
+        ['Get one episode', 'getOneEpisode'],
+        ['Get multiple episodes', 'getMultipleEpisodes'],
+        ['Get episode by filters', 'getEpisodeByFilters']
+      ]
     }
   };
 
@@ -120,7 +145,6 @@ function Docs() {
         {Object.keys(menuItems).map((key) => (
           <>
             <ListItemButton dense onClick={menuItems[key].handleClick}>
-              {/* todo: add link here */}
               <ListItemText
                 primary={key}
                 key={`${key}-submenu`}
@@ -134,14 +158,16 @@ function Docs() {
             </ListItemButton>
             <Collapse in={menuItems[key].open} timeout="auto">
               {menuItems[key].subMenu.map((submenu) => (
-                <ListItemText
-                  primary={submenu}
-                  key={`${submenu}-submenu`}
-                  sx={{
-                    marginLeft: '20px',
-                    fontSize: '10px'
-                  }}
-                />
+                <Link href={`/docs/#${submenu[1]}`} underline="none">
+                  <ListItemText
+                    primary={submenu[0]}
+                    key={`${submenu[0]}-submenu`}
+                    sx={{
+                      marginLeft: '20px',
+                      fontSize: '10px'
+                    }}
+                  />
+                </Link>
               ))}
             </Collapse>
           </>
@@ -201,24 +227,32 @@ function Docs() {
             <Typography variant="body1">This documentation offers a quick overview of the API, and a few examples of how to use it. Please take a look before proceeding and have fun!</Typography>
             <br />
 
-            <Typography variant="h6">Authentication</Typography>
+            <Typography variant="h6" id="authentication">
+              Authentication
+            </Typography>
             <br />
             <Typography variant="body1">This is a free open source project that does not require any authentication or API key to access.</Typography>
 
             <br />
-            <Typography variant="h6">Rate Limit</Typography>
+            <Typography variant="h6" id="rateLimit">
+              Rate Limit
+            </Typography>
             <br />
             <Typography variant="body1">
               To prevent abuse and ensure that the API can continue to serve all users, there is a rate limit in place. The rate limit for this API is 10,000 requests per IP address per day. If you
               exceed this limit, you will receive a 429 Too Many Requests error response. If you think you need a higher rate limit, please contact me.
             </Typography>
             <br />
-            <Typography variant="h6">Request</Typography>
+            <Typography variant="h6" id="request">
+              Request
+            </Typography>
             <br />
             <Typography variant="body1">This API only accepts HTTP GET requests.</Typography>
             <br />
             <div id={'baseUrl'}>
-              <Typography variant="h6">Base URL</Typography>
+              <Typography variant="h6" id="baseURL">
+                Base URL
+              </Typography>
             </div>
             <br />
             <Box component="span" sx={{ display: 'block' }}>
@@ -238,7 +272,9 @@ function Docs() {
             </Box>
 
             <br />
-            <Typography variant="h6">Response</Typography>
+            <Typography variant="h6" id="response">
+              Response
+            </Typography>
             <br />
             <Typography variant="body1">The response will be in JSON format and will contain the requested data. Here's an example of a response:</Typography>
             <br />
@@ -249,7 +285,9 @@ function Docs() {
             <ReactJson src={responseExample} theme="pop" enableClipboard={false} displayDataTypes={false} />
 
             <br />
-            <Typography variant="h6">Pagination</Typography>
+            <Typography variant="h6" id="pagination">
+              Pagination
+            </Typography>
             <br />
             <Typography variant="body1">
               The response format of the API will return a maximum of 20 items per page. If the number of items in the result set is greater than 20, the response will contain a pagination object with
@@ -299,7 +337,9 @@ function Docs() {
             <Typography variant="body1">There are total 73 available characters.</Typography>
             <br />
 
-            <Typography variant="h6">Character schema</Typography>
+            <Typography variant="h6" id="characterSchema">
+              Character schema
+            </Typography>
             <br />
             <Box
               sx={{
@@ -311,20 +351,28 @@ function Docs() {
             <br />
 
             <br />
-            <Typography variant="h6">Get all characters</Typography>
+            <Typography variant="h6" id="getAllCharacters">
+              Get all characters
+            </Typography>
             <br />
             <Typography variant="body1">You can get all characters with below request</Typography>
             <br />
-            <Typography variant="h6">Get one character by id</Typography>
+            <Typography variant="h6" id="getOneCharacter">
+              Get one character by id
+            </Typography>
             <br />
             <Typography variant="body1">You can get a specific character by the id. Check above example above(add a link to homelander)</Typography>
             <br />
-            <Typography variant="h6">Get multiple characters</Typography>
+            <Typography variant="h6" id="getMultipleCharacters">
+              Get multiple characters
+            </Typography>
             <br />
             <Typography variant="body1">You can get multiple characters by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
             <Typography variant="body1">Noticed invalid id will be ignored</Typography>
             <br />
-            <Typography variant="h6">Get character by filters</Typography>
+            <Typography variant="h6" id="getCharacterByFilters">
+              Get character by filters
+            </Typography>
             <br />
             <Typography variant="body1">You can get character by offering filters. Below are accepted filters for Characters</Typography>
             <br />
@@ -338,7 +386,9 @@ function Docs() {
             <Typography variant="body1">There are total xx available affiliations.</Typography>
             <br />
 
-            <Typography variant="h6">Affiliation schema</Typography>
+            <Typography variant="h6" id="affiliationSchema">
+              Affiliation schema
+            </Typography>
             <br />
             <Box
               sx={{
@@ -350,20 +400,28 @@ function Docs() {
             <br />
 
             <br />
-            <Typography variant="h6">Get all affiliations</Typography>
+            <Typography variant="h6" id="getAllAffiliations">
+              Get all affiliations
+            </Typography>
             <br />
             <Typography variant="body1">You can get all affiliations with below request</Typography>
             <br />
-            <Typography variant="h6">Get one affiliation by id</Typography>
+            <Typography variant="h6" id="getOneAffiliation">
+              Get one affiliation by id
+            </Typography>
             <br />
             <Typography variant="body1">You can get a specific affiliation by the id. Check above example above(add a link to homelander)</Typography>
             <br />
-            <Typography variant="h6">Get multiple affiliations</Typography>
+            <Typography variant="h6" id="getMultipleAffiliations">
+              Get multiple affiliations
+            </Typography>
             <br />
             <Typography variant="body1">You can get multiple affiliations by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
             <Typography variant="body1">Noticed invalid id will be ignored</Typography>
             <br />
-            <Typography variant="h6">Get affiliation by filters</Typography>
+            <Typography variant="h6" id="getAffiliationByFilters">
+              Get affiliation by filters
+            </Typography>
             <br />
             <Typography variant="body1">You can get affiliation by offering filters. Below are accepted filters for Characters</Typography>
             <br />
@@ -377,7 +435,9 @@ function Docs() {
             <Typography variant="body1">There are total xx available affiliations.</Typography>
             <br />
 
-            <Typography variant="h6">Episode schema</Typography>
+            <Typography variant="h6" id="episodeSchema">
+              Episode schema
+            </Typography>
             <br />
             <Box
               sx={{
@@ -389,20 +449,28 @@ function Docs() {
             <br />
 
             <br />
-            <Typography variant="h6">Get all episodes</Typography>
+            <Typography variant="h6" id="getAllEpisodes">
+              Get all episodes
+            </Typography>
             <br />
             <Typography variant="body1">You can get all episodes with below request</Typography>
             <br />
-            <Typography variant="h6">Get one episode by id</Typography>
+            <Typography variant="h6" id="getOneEpisode">
+              Get one episode by id
+            </Typography>
             <br />
             <Typography variant="body1">You can get a specific episode by the id. Check above example above(add a link to homelander)</Typography>
             <br />
-            <Typography variant="h6">Get multiple episodes</Typography>
+            <Typography variant="h6" id="getMultipleEpisodes">
+              Get multiple episodes
+            </Typography>
             <br />
             <Typography variant="body1">You can get multiple episodes by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
             <Typography variant="body1">Noticed invalid id will be ignored</Typography>
             <br />
-            <Typography variant="h6">Get episode by filters</Typography>
+            <Typography variant="h6" id="getEpisodeByFilters">
+              Get episode by filters
+            </Typography>
             <br />
             <Typography variant="body1">You can get episode by offering filters. Below are accepted filters for Characters</Typography>
             <br />
