@@ -14,5 +14,5 @@ const EpisodeSchema = new mongoose_1.Schema({
     followed_by: { type: Object, required: true },
     image: { type: String, required: true },
     url: { type: String, required: true }
-});
+}, { collection: 'episodes' });
 exports.EpisodeModel = (0, mongoose_1.model)('Episode', EpisodeSchema);

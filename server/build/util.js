@@ -9,17 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRecordsByModelAndId = exports.handleIdInput = exports.formatResult = void 0;
+exports.getRecordsByModelAndId = exports.handleIdInput = exports.formatResult = exports.affiliationFilters = exports.episodeFilters = exports.characterFilters = void 0;
+exports.characterFilters = ['id', 'name', 'real_name', 'gender', 'status'];
+exports.episodeFilters = ['id', 'season', 'episode', 'title'];
+exports.affiliationFilters = ['id', 'name'];
 const formatResult = (res) => {
-    return res.length === 1 ? res[0] : res;
+    const sortedRes = res.sort((a, b) => a.id - b.id);
+    return sortedRes.length === 1 ? sortedRes[0] : sortedRes;
 };
 exports.formatResult = formatResult;
-const isPostiveInter = (s) => {
+const isPositiveInter = (s) => {
     const num = Number(s);
     return Number.isInteger(Number(num)) && Number(num) > 0;
 };
 const handleIdInput = (idInput) => {
-    return idInput.includes('[') ? JSON.parse(idInput) : idInput.split(',').filter((i) => isPostiveInter(i));
+    return idInput.includes('[') ? JSON.parse(idInput) : idInput.split(',').filter((i) => isPositiveInter(i));
 };
 exports.handleIdInput = handleIdInput;
 // todo:remove any in model type

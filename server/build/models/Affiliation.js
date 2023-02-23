@@ -10,5 +10,5 @@ const AffiliationSchema = new mongoose_1.Schema({
     former_member: { type: [Object], required: true },
     associate: { type: [Object], required: true },
     url: { type: String, required: true }
-});
+}, { collection: 'affiliations' });
 exports.AffiliationModel = (0, mongoose_1.model)('Affiliation', AffiliationSchema);

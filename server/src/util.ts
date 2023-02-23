@@ -24,7 +24,8 @@ export const episodeFilters = ['id', 'season', 'episode', 'title'];
 export const affiliationFilters = ['id', 'name'];
 
 export const formatResult = (res: any[]) => {
-  return res.length === 1 ? res[0] : res;
+  const sortedRes = res.sort((a, b) => a.id - b.id);
+  return sortedRes.length === 1 ? sortedRes[0] : sortedRes;
 };
 
 const isPositiveInter = (s: string) => {

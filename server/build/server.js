@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const path_1 = __importDefault(require("path"));
 const config_1 = require("./config/config");
 const Character_1 = __importDefault(require("./routes/Character"));
 const Episode_1 = __importDefault(require("./routes/Episode"));
@@ -20,6 +21,7 @@ mongoose_1.default
 const startServer = () => {
     app.use(express_1.default.urlencoded({ extended: true }));
     app.use(express_1.default.json());
+    app.use(express_1.default.static(path_1.default.join(__dirname, '/../../client/build')));
     /** Rules of our API */
     app.use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*');
@@ -34,6 +36,9 @@ const startServer = () => {
     app.use('/api/episode', Episode_1.default);
     app.use('/api/affiliation', Affiliation_1.default);
     app.get('/ping', (req, res, next) => res.status(200).json({ hello: 'world' }));
+    app.get('*', (req, res) => {
+        res.sendFile(path_1.default.join(__dirname + '/../../client/build/index.html'));
+    });
     /** Error handling */
     app.use((req, res, next) => {
         const error = new Error('Not found');
