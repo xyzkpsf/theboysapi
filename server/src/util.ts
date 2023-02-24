@@ -23,9 +23,8 @@ export const episodeFilters = ['id', 'season', 'episode', 'title'];
 
 export const affiliationFilters = ['id', 'name'];
 
-export const formatResult = (res: any[]) => {
-  const sortedRes = res.sort((a, b) => a.id - b.id);
-  return sortedRes.length === 1 ? sortedRes[0] : sortedRes;
+export const formatResult = (res: any[], page?: number) => {
+  return res.length === 1 ? res[0] : res;
 };
 
 const isPositiveInter = (s: string) => {
@@ -46,6 +45,36 @@ export const getRecordsByModelAndId = async (req: Request, res: Response, model:
     }
     const response = await model.find({ id: { $in: ids } }, '-_id');
     return response && response.length > 0 ? res.status(200).json(formatResult(response)) : res.status(404).json({ message: 'Character not found with given id' });
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
+
+// todo: need to handle filter input type and invalid input
+export const getRecordsByModelAndFilter = async (req: Request, res: Response, model: any, modelName: string) => {
+  const { page = 1 } = req.query;
+
+  const filter = req.query || {};
+  for (const key in filter) {
+    filter[key] = { $regex: filter[key], $options: 'i' };
+  }
+  try {
+    const response = await model
+      .find(filter, '-_id')
+      .limit(20)
+      .skip((Number(page) - 1) * 20)
+      .sort('id');
+    const count = await model.countDocuments(filter);
+    if (response && response.length > 0) {
+      if (count > 20) {
+        const pages = Math.ceil(count / 20);
+        const prev = Number(page) > 1 ? `https://www.theboysapi.com/api/${modelName}/?page=${Number(page) - 1}` : null;
+        const next = Number(page) < pages ? `https://www.theboysapi.com/api/${modelName}/?page=${Number(page) + 1}` : null;
+        return res.status(200).json({ count, pages, prev, next, results: formatResult(response) });
+      }
+      return res.status(200).json(formatResult(response));
+    }
+    return res.status(404).json({ message: `${modelName} not found with given condition` });
   } catch (error) {
     return res.status(500).json({ error });
   }
