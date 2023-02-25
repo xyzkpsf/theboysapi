@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactJson from 'react-json-view';
 import { THEME_COLOR } from '../Style';
 
@@ -13,70 +13,26 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link/Link';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { paginationExample, responseExample } from '../Utils/utils';
 
-const responseExample = {
-  id: 8,
-  name: 'Homelander',
-  real_name: 'John',
-  species: ['Supe'],
-  citizenship: 'American',
-  gender: 'Male',
-  status: 'Alive',
-  affiliation: [
-    {
-      name: 'The Seven',
-      url: 'https://www.theboysapi.com/api/affiliation/2',
-      is_former: false
-    }
-  ],
-  families: [
-    {
-      name: 'Jonah Vogelbaum',
-      url: 'https://www.theboysapi.com/api/character/57',
-      relationship: 'father figure'
-    },
-    {
-      name: 'Soldier Boy',
-      url: 'https://www.theboysapi.com/api/character/20',
-      relationship: 'biological father'
-    },
-    {
-      name: 'Ryan Butcher',
-      url: 'https://www.theboysapi.com/api/character/47',
-      relationship: 'son'
-    }
-  ],
-  portrayed: ['Antony Starr'],
-  first_seen: {
-    name: 'The Name of the Game',
-    url: 'https://www.theboysapi.com/api/episode/1'
-  },
-  last_seen: {
-    name: 'The Instant White-Hot Wild',
-    url: 'https://www.theboysapi.com/api/episode/24'
-  },
-  season: ['1', '2', '3'],
-  image: 'https://theboysapi.s3.us-west-2.amazonaws.com/character_8.jpg',
-  url: 'https://www.theboysapi.com/api/character/8'
+const allResources: { [key: string]: string } = {
+  Characters: 'https://www.theboysapi.com/api/character',
+  Affiliations: 'https://www.theboysapi.com/api/affiliation',
+  Episodes: 'https://www.theboysapi.com/api/episode'
 };
 
 const paginationAttributes = [
-  'items: An array of items returned in the current page.',
-  'page: The current page number.',
-  'total_pages: The total number of pages.',
-  'next_page: The URL of the next page if it exists, otherwise null.',
-  'previous_page: The URL of the previous page if it exists, otherwise null.'
+  'results: An array of items returned in the current page.',
+  'count: The total number of response items for that request.',
+  'pages: The total amount of pages.',
+  'prev: The URL of the previous page if it exists, otherwise null.',
+  'next: The URL of the next page if it exists, otherwise null.'
 ];
 
+const characterFilter = ['name', 'real_name', 'species', 'citizenship', 'gender', 'status', 'season'];
+
 const drawerWidth = 200;
-const subTitle = ['Introduction', 'Character', 'Affiliation', 'Episode'];
-const subTitleIdMap: { [key: string]: string } = {
-  'Base URL': 'baseUrl',
-  'Available Resource': 'availableResource',
-  Pagination: 'pagination',
-  Filters: 'filters',
-  'Rate Limiting': 'rateLimiting'
-};
+
 function Docs() {
   const [openIntro, setOpenIntro] = useState(false);
   const [openCharacter, setOpenCharacter] = useState(false);
@@ -261,15 +217,24 @@ function Docs() {
             <br />
             <Typography variant="body1">There are three available resources:</Typography>
             <br />
-            <Box component="span" sx={{ display: 'block', marginBottom: '5px' }}>
-              Characters (add bullet point and link): https://www.theboysapi.com/api/character
-            </Box>
-            <Box component="span" sx={{ display: 'block', marginBottom: '5px' }}>
-              Affiliations (add bullet point and link): https://www.theboysapi.com/api/affiliation
-            </Box>
-            <Box component="span" sx={{ display: 'block' }}>
-              Episodes (add bullet point and link): https://www.theboysapi.com/api/episode
-            </Box>
+            <List style={{ listStyle: 'disc' }} sx={{ marginLeft: '20px' }}>
+              {Object.keys(allResources).map((key) => (
+                <ListItem key={key} style={{ display: 'list-item' }}>
+                  <Box display="flex">
+                    <Typography variant="body1">{key}</Typography>
+                    <Link
+                      variant="body1"
+                      href={allResources[key]}
+                      sx={{
+                        marginLeft: '20px'
+                      }}
+                    >
+                      {allResources[key]}
+                    </Link>
+                  </Box>
+                </ListItem>
+              ))}
+            </List>
 
             <br />
             <Typography variant="h6" id="response">
@@ -279,10 +244,21 @@ function Docs() {
             <Typography variant="body1">The response will be in JSON format and will contain the requested data. Here's an example of a response:</Typography>
             <br />
             <Typography sx={{ background: 'black' }} variant="body1">
-              GET https://www.theboysapi.com/api/character/8
+              <Box display="flex" id="getOneCharacterExample">
+                <Typography variant="body1">GET</Typography>
+                <Link
+                  variant="body1"
+                  href="https://www.theboysapi.com/api/character/8"
+                  sx={{
+                    marginLeft: '20px'
+                  }}
+                >
+                  https://www.theboysapi.com/api/character/8
+                </Link>
+              </Box>
             </Typography>
             <br />
-            <ReactJson src={responseExample} theme="pop" enableClipboard={false} displayDataTypes={false} />
+            <ReactJson src={responseExample} name={false} theme="pop" enableClipboard={false} displayDataTypes={false} />
 
             <br />
             <Typography variant="h6" id="pagination">
@@ -290,8 +266,8 @@ function Docs() {
             </Typography>
             <br />
             <Typography variant="body1">
-              The response format of the API will return a maximum of 20 items per page. If the number of items in the result set is greater than 20, the response will contain a pagination object with
-              details on the current page, the total number of pages and the next and previous pages.
+              The response format of the API will return a maximum of 20 items per page. If the number of items in the result set is greater or equal than 20, the response will contain a pagination
+              object with details on the current page, the total number of pages and the next and previous pages.
             </Typography>
             <br />
             <Typography variant="body1">The response will be a JSON object with the following properties:</Typography>
@@ -306,29 +282,24 @@ function Docs() {
             <br />
             <Typography variant="body1"></Typography>
             <br />
-            <Typography variant="h6">Example Response</Typography>
+            <Typography variant="h6">Example Paginated Response</Typography>
             <br />
             <Typography sx={{ background: 'black' }} variant="body1">
-              GET https://www.theboysapi.com/api/character
+              <Box display="flex" id="getAllCharacterExample">
+                <Typography variant="body1">GET</Typography>
+                <Link
+                  variant="body1"
+                  href="https://www.theboysapi.com/api/character"
+                  sx={{
+                    marginLeft: '20px'
+                  }}
+                >
+                  https://www.theboysapi.com/api/character
+                </Link>
+              </Box>
             </Typography>
             <br />
-            <Typography variant="h6">SHOW EXAMPLE RESPONSE HERE</Typography>
-            <br />
-            <Typography variant="h6">SHow Example on choosing page parameter</Typography>
-            <br />
-
-            {/* todo: add pagination example */}
-            {/* {
-              "metadata": {
-                "count": 826,
-                "pages": 42,
-                "next": "https://rickandmortyapi.com/api/character/?page=2",
-                "prev": null
-              },
-              "items": [
-                // ...
-              ]
-            } */}
+            <ReactJson src={paginationExample} name={false} collapsed={1} theme="pop" enableClipboard={false} displayDataTypes={false} />
 
             <br />
             <br />
@@ -355,13 +326,35 @@ function Docs() {
               Get all characters
             </Typography>
             <br />
-            <Typography variant="body1">You can get all characters with below request</Typography>
+            <Box display="flex">
+              <Typography variant="body1">See example</Typography>
+              <Link
+                href={`/docs/#getAllCharacterExample`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                here
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getOneCharacter">
               Get one character by id
             </Typography>
             <br />
-            <Typography variant="body1">You can get a specific character by the id. Check above example above(add a link to homelander)</Typography>
+            <Box display="flex">
+              <Typography variant="body1">You can get a specific character by the id. Check example </Typography>
+              <Link
+                href={`/docs/#getOneCharacterExample`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                here
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getMultipleCharacters">
               Get multiple characters
@@ -374,7 +367,13 @@ function Docs() {
               Get character by filters
             </Typography>
             <br />
-            <Typography variant="body1">You can get character by offering filters. Below are accepted filters for Characters</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">
+                You can filter character data by passing query parameters. To add a single query parameter, append a "?" symbol to the end of the API endpoint, followed by the name of the query
+                parameter, an equals sign "=", and the value of the query parameter. To add multiple query parameters, separate each query parameter with an ampersand symbol "&". For example:
+                character/?gender=Male&status=Alive
+              </Typography>
+            </Box>
             <br />
             <Typography variant="body1">Todo: Add a table of character filter here</Typography>
             <br />
