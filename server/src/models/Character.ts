@@ -33,7 +33,7 @@ const CharacterSchema = new Schema<ICharacter>(
     portrayed: { type: [String], required: true },
     first_seen: { type: Object, required: true },
     last_seen: { type: Object, required: true },
-    season: { type: [String], required: true },
+    season: { type: [Number], required: true },
     image: { type: String, required: true },
     url: { type: String, required: true }
   },

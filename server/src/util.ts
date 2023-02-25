@@ -17,11 +17,13 @@ export type familiesObject = {
   relationship: string;
 };
 
-export const characterFilters = ['id', 'name', 'real_name', 'gender', 'status'];
+const intTypeFields = ['season', 'episode'];
 
-export const episodeFilters = ['id', 'season', 'episode', 'title'];
-
-export const affiliationFilters = ['id', 'name'];
+const supportedFilters = {
+  character: ['name', 'real_name', 'species', 'citizenship', 'gender', 'status', 'season'],
+  affiliation: ['name'],
+  episode: ['season', 'episode', 'title']
+};
 
 export const formatResult = (res: any[], page?: number) => {
   return res.length === 1 ? res[0] : res;
@@ -50,14 +52,18 @@ export const getRecordsByModelAndId = async (req: Request, res: Response, model:
   }
 };
 
-// todo: need to handle filter input type and invalid input
-export const getRecordsByModelAndFilter = async (req: Request, res: Response, model: any, modelName: string) => {
+export const getRecordsByModelAndFilter = async (req: Request, res: Response, model: any, modelName: 'character' | 'affiliation' | 'episode') => {
   const { page = 1 } = req.query;
 
   const filter = req.query || {};
   for (const key in filter) {
-    filter[key] = { $regex: filter[key], $options: 'i' };
+    if (supportedFilters[modelName].includes(key)) {
+      if (!intTypeFields.includes(key)) {
+        filter[key] = { $regex: filter[key], $options: 'j' };
+      }
+    }
   }
+
   try {
     const response = await model
       .find(filter, '-_id')
