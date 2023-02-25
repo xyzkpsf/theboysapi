@@ -7,6 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+const supportedFilters = {
+  character: ['name', 'real_name', 'species', 'citizenship', 'gender', 'status', 'season'],
+  affiliation: ['name'],
+  episode: ['season', 'episode', 'title']
+};
+
 const createSchemaData = (key: string, type: string, description: string) => {
   return { key, type, description };
 };
@@ -58,7 +64,7 @@ const characterData = (resource: string) => {
   }
 };
 
-function SchemaTable({ resource }: { resource: string }) {
+function SchemaTable({ resource }: { resource: 'character' | 'affiliation' | 'episode' }) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label={`${resource} schema table`}>
@@ -73,7 +79,7 @@ function SchemaTable({ resource }: { resource: string }) {
           {characterData(resource).map((row) => (
             <TableRow key={row.key} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
-                {row.key}
+                {supportedFilters[resource].includes(row.key) ? row.key + ' *' : row.key}
               </TableCell>
               <TableCell>{row.type}</TableCell>
               <TableCell>{row.description}</TableCell>

@@ -29,8 +29,6 @@ const paginationAttributes = [
   'next: The URL of the next page if it exists, otherwise null.'
 ];
 
-const characterFilter = ['name', 'real_name', 'species', 'citizenship', 'gender', 'status', 'season'];
-
 const drawerWidth = 200;
 
 function Docs() {
@@ -309,7 +307,7 @@ function Docs() {
             <br />
 
             <Typography variant="h6" id="characterSchema">
-              Character schema
+              Character schema, keys followed by an asterisk (*) indicates filterable.
             </Typography>
             <br />
             <Box
@@ -367,15 +365,26 @@ function Docs() {
               Get character by filters
             </Typography>
             <br />
-            <Box display="flex" sx={{ flexDirection: 'column' }}>
-              <Typography variant="body1">
-                You can filter character data by passing query parameters. To add a single query parameter, append a "?" symbol to the end of the API endpoint, followed by the name of the query
-                parameter, an equals sign "=", and the value of the query parameter. To add multiple query parameters, separate each query parameter with an ampersand symbol "&". For example:
-                character/?gender=Male&status=Alive
-              </Typography>
+
+            <Typography variant="body1">
+              You can filter characters by passing query parameters. To add a single query parameter, append a "?" symbol to the end of the API endpoint, followed by the formate of "query=value". To
+              add multiple query parameters, separate each query parameter with an ampersand symbol "&".
+            </Typography>
+            <br />
+            <Box display="flex" sx={{ flexDirection: 'row' }}>
+              <Typography variant="body1">For example:</Typography>
+              <Link href={`https://www.theboysapi.com/api/character/?gender=Male&status=Alive`} variant="body1" sx={{ marginLeft: '5px' }}>
+                https://www.theboysapi.com/api/character/?gender=Male&status=Alive
+              </Link>
             </Box>
             <br />
-            <Typography variant="body1">Todo: Add a table of character filter here</Typography>
+            <Box display="flex">
+              <Typography variant="body1">Any non-filterable or invalid parameters will be ignore. Find all filterable parameters</Typography>
+              <Link href={`/docs/#characterSchema`} variant="body1" sx={{ marginLeft: '5px' }}>
+                here
+              </Link>
+            </Box>
+
             <br />
 
             <br />
@@ -403,7 +412,12 @@ function Docs() {
               Get all affiliations
             </Typography>
             <br />
-            <Typography variant="body1">You can get all affiliations with below request</Typography>
+            <Box display="flex">
+              <Typography variant="body1">You can get all affiliations by sending request to affiliation endpoint directly, find url</Typography>
+              <Link href={`/docs/#baseURL`} variant="body1" sx={{ marginLeft: '5px' }}>
+                here
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getOneAffiliation">
               Get one affiliation by id
@@ -452,7 +466,12 @@ function Docs() {
               Get all episodes
             </Typography>
             <br />
-            <Typography variant="body1">You can get all episodes with below request</Typography>
+            <Box display="flex">
+              <Typography variant="body1">You can get all episodes by sending request to episode endpoint directly, find url</Typography>
+              <Link href={`/docs/#baseURL`} variant="body1" sx={{ marginLeft: '5px' }}>
+                here
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getOneEpisode">
               Get one episode by id

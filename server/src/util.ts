@@ -61,6 +61,8 @@ export const getRecordsByModelAndFilter = async (req: Request, res: Response, mo
       if (!intTypeFields.includes(key)) {
         filter[key] = { $regex: filter[key], $options: 'j' };
       }
+    } else {
+      delete filter[key];
     }
   }
 
