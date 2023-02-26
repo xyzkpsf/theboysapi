@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
+import rateLimit from 'express-rate-limit'
 import { config } from './config/config';
 import characterRoutes from './routes/Character';
 import episodeRoutes from './routes/Episode';
@@ -33,6 +34,15 @@ const startServer = () => {
 
     next();
   });
+
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, 
+    standardHeaders: true, 
+    legacyHeaders: false, 
+  })
+
+  app.use(limiter)
 
   app.use('/api/character', characterRoutes);
   app.use('/api/episode', episodeRoutes);
