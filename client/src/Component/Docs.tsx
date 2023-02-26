@@ -358,14 +358,36 @@ function Docs() {
               Get multiple characters
             </Typography>
             <br />
-            <Typography variant="body1">You can get multiple characters by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
-            <Typography variant="body1">Noticed invalid id will be ignored</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">
+                You can get multiple characters by adding multiple ids, seperated by comma, or by an array of ids. Noticed invalid id will be ignored. For example:
+              </Typography>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/character/1,3,5`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/character/1,3,5
+              </Link>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/character/[1,3,5]`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/character/[1,3,5]
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getCharacterByFilters">
               Get character by filters
             </Typography>
             <br />
-
             <Typography variant="body1">
               You can filter characters by passing query parameters. To add a single query parameter, append a "?" symbol to the end of the API endpoint, followed by the formate of "query=value". To
               add multiple query parameters, separate each query parameter with an ampersand symbol "&".
@@ -384,18 +406,17 @@ function Docs() {
                 here
               </Link>
             </Box>
-
             <br />
 
             <br />
             <br />
             <Typography variant="h4">Affiliation</Typography>
             <br />
-            <Typography variant="body1">There are total xx available affiliations.</Typography>
+            <Typography variant="body1">There are total 22 available affiliations.</Typography>
             <br />
 
             <Typography variant="h6" id="affiliationSchema">
-              Affiliation schema
+              Affiliation schema, keys followed by an asterisk (*) indicates filterable.
             </Typography>
             <br />
             <Box
@@ -423,33 +444,72 @@ function Docs() {
               Get one affiliation by id
             </Typography>
             <br />
-            <Typography variant="body1">You can get a specific affiliation by the id. Check above example above(add a link to homelander)</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">You can get a specific affiliation by the id. For example </Typography>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/affiliation/1`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/affiliation/1
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getMultipleAffiliations">
               Get multiple affiliations
             </Typography>
             <br />
-            <Typography variant="body1">You can get multiple affiliations by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
-            <Typography variant="body1">Noticed invalid id will be ignored</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">
+                You can get multiple affiliations by adding multiple ids, seperated by comma, or by an array of ids. Noticed invalid id will be ignored. For example:
+              </Typography>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/affiliation/1,3,5`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/affiliation/1,3,5
+              </Link>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/affiliation/[1,3,5]`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/affiliation/[1,3,5]
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getAffiliationByFilters">
               Get affiliation by filters
             </Typography>
             <br />
-            <Typography variant="body1">You can get affiliation by offering filters. Below are accepted filters for Characters</Typography>
-            <br />
-            <Typography variant="body1">Todo: Add a table of affiliation filter here</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">You can get affiliation by offering query parameter on name. For example: </Typography>
+              <br />
+              <Link href={`https://www.theboysapi.com/api/affiliation/?name=The%20boys`} variant="body1" sx={{ marginLeft: '5px' }}>
+                https://www.theboysapi.com/api/affiliation/?name=The%20boys
+              </Link>
+            </Box>
             <br />
 
             <br />
             <br />
             <Typography variant="h4">Episode</Typography>
             <br />
-            <Typography variant="body1">There are total xx available affiliations.</Typography>
+            <Typography variant="body1">There are total 24 available affiliations.</Typography>
             <br />
 
             <Typography variant="h6" id="episodeSchema">
-              Episode schema
+              Episode schema, keys followed by an asterisk (*) indicates filterable.
             </Typography>
             <br />
             <Box
@@ -477,32 +537,71 @@ function Docs() {
               Get one episode by id
             </Typography>
             <br />
-            <Typography variant="body1">You can get a specific episode by the id. Check above example above(add a link to homelander)</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">You can get a specific episode by the id. For example </Typography>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/episode/1`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/episode/1
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getMultipleEpisodes">
               Get multiple episodes
             </Typography>
             <br />
-            <Typography variant="body1">You can get multiple episodes by adding multiple ids, seperated by comma like: /character/1,3,5, or by an array of ids, like /character/[1,3,5]</Typography>
-            <Typography variant="body1">Noticed invalid id will be ignored</Typography>
+            <Box display="flex" sx={{ flexDirection: 'column' }}>
+              <Typography variant="body1">You can get multiple episodes by adding multiple ids, seperated by comma, or by an array of ids. Noticed invalid id will be ignored. For example:</Typography>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/episode/1,3,5`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/episode/1,3,5
+              </Link>
+              <br />
+              <Link
+                href={`https://www.theboysapi.com/api/episode/[1,3,5]`}
+                variant="body1"
+                sx={{
+                  marginLeft: '5px'
+                }}
+              >
+                https://www.theboysapi.com/api/episode/[1,3,5]
+              </Link>
+            </Box>
             <br />
             <Typography variant="h6" id="getEpisodeByFilters">
               Get episode by filters
             </Typography>
             <br />
-            <Typography variant="body1">You can get episode by offering filters. Below are accepted filters for Characters</Typography>
+            <Typography variant="body1">
+              You can filter episodes by passing query parameters. To add a single query parameter, append a "?" symbol to the end of the API endpoint, followed by the formate of "query=value". To add
+              multiple query parameters, separate each query parameter with an ampersand symbol "&".
+            </Typography>
             <br />
-            <Typography variant="body1">Todo: Add a table of episode filter here</Typography>
+            <Box display="flex" sx={{ flexDirection: 'row' }}>
+              <Typography variant="body1">For example:</Typography>
+              <Link href={`https://www.theboysapi.com/api/episode/?season=1&episode=1`} variant="body1" sx={{ marginLeft: '5px' }}>
+                https://www.theboysapi.com/api/episode/?season=1&episode=1
+              </Link>
+            </Box>
             <br />
-
-            <Typography variant="h6"></Typography>
+            <Box display="flex">
+              <Typography variant="body1">Any non-filterable or invalid parameters will be ignore. Find all filterable parameters</Typography>
+              <Link href={`/docs/#episodeSchema`} variant="body1" sx={{ marginLeft: '5px' }}>
+                here
+              </Link>
+            </Box>
             <br />
-            <Typography variant="body1"></Typography>
-
-            <br />
-            <Typography variant="h6"></Typography>
-            <br />
-            <Typography variant="body1"></Typography>
           </Box>
         </Box>
       </Box>
