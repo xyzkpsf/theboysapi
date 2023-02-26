@@ -193,7 +193,7 @@ function Docs() {
             </Typography>
             <br />
             <Typography variant="body1">
-              To prevent abuse and ensure that the API can continue to serve all users, there is a rate limit in place. The rate limit for this API is 10,000 requests per IP address per day. If you
+              To prevent abuse and ensure that the API can continue to serve all users, there is a rate limit in place. The rate limit for this API is 1,000 requests per IP address per 15 mins. If you
               exceed this limit, you will receive a 429 Too Many Requests error response. If you think you need a higher rate limit, please contact me.
             </Typography>
             <br />
