@@ -14,8 +14,6 @@ function Logo() {
         color: THEME_COLOR.SECONDARY,
         backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
         textAlign: 'center'
-        // paddingLeft: '24px',
-        // paddingRight: '24px'
       }}
     >
       <img src={logo} alt={'logo'} style={{ height: 180, stroke: THEME_COLOR.SECONDARY }} />
