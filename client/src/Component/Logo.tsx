@@ -1,6 +1,5 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import logo from '../assets/logo.svg';
 import { THEME_COLOR } from '../Style';
 

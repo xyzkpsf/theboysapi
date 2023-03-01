@@ -12,16 +12,12 @@ const fetchCharacters = async () => {
 };
 
 function Layout() {
-  // todo: set cache
-  // todo: handle rerender issue
-  // toso: resize
 
-  const { data, status, isPreviousData } = useQuery('characters', fetchCharacters, {
+  const { data, status } = useQuery('characters', fetchCharacters, {
     staleTime: 10 * (60 * 1000),
     cacheTime: 15 * (60 * 1000)
   });
 
-  // todo: style loading here
   if (status === 'loading') {
     return <div>Loading...</div>;
   }

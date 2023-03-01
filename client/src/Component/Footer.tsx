@@ -7,7 +7,7 @@ function Footer() {
   return (
     <Box
       sx={{
-        // height: 'calc(100vh - 800px)',
+        height: '200px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

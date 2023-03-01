@@ -161,7 +161,7 @@ function Docs() {
       >
         <Box
           sx={{
-            height: `calc(100vh - 80px)`,
+            height: `calc(100vh - 180px)`,
             overflow: 'auto',
             display: 'flex',
             justifyContent: 'center'
@@ -247,6 +247,7 @@ function Docs() {
                 <Link
                   variant="body1"
                   href="https://www.theboysapi.com/api/character/8"
+                  target="_blank"
                   sx={{
                     marginLeft: '20px'
                   }}
@@ -288,6 +289,7 @@ function Docs() {
                 <Link
                   variant="body1"
                   href="https://www.theboysapi.com/api/character"
+                  target="_blank"
                   sx={{
                     marginLeft: '20px'
                   }}
@@ -365,6 +367,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/character/1,3,5`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -375,6 +378,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/character/[1,3,5]`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -395,7 +399,7 @@ function Docs() {
             <br />
             <Box display="flex" sx={{ flexDirection: 'row' }}>
               <Typography variant="body1">For example:</Typography>
-              <Link href={`https://www.theboysapi.com/api/character/?gender=Male&status=Alive`} variant="body1" sx={{ marginLeft: '5px' }}>
+              <Link href={`https://www.theboysapi.com/api/character/?gender=Male&status=Alive`} target="_blank" variant="body1" sx={{ marginLeft: '5px' }}>
                 https://www.theboysapi.com/api/character/?gender=Male&status=Alive
               </Link>
             </Box>
@@ -449,6 +453,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/affiliation/1`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -469,6 +474,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/affiliation/1,3,5`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -479,6 +485,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/affiliation/[1,3,5]`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -495,7 +502,7 @@ function Docs() {
             <Box display="flex" sx={{ flexDirection: 'column' }}>
               <Typography variant="body1">You can get affiliation by offering query parameter on name. For example: </Typography>
               <br />
-              <Link href={`https://www.theboysapi.com/api/affiliation/?name=The%20boys`} variant="body1" sx={{ marginLeft: '5px' }}>
+              <Link href={`https://www.theboysapi.com/api/affiliation/?name=The%20boys`} target="_blank" variant="body1" sx={{ marginLeft: '5px' }}>
                 https://www.theboysapi.com/api/affiliation/?name=The%20boys
               </Link>
             </Box>
@@ -542,6 +549,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/episode/1`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -560,6 +568,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/episode/1,3,5`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -570,6 +579,7 @@ function Docs() {
               <br />
               <Link
                 href={`https://www.theboysapi.com/api/episode/[1,3,5]`}
+                target="_blank"
                 variant="body1"
                 sx={{
                   marginLeft: '5px'
@@ -590,14 +600,14 @@ function Docs() {
             <br />
             <Box display="flex" sx={{ flexDirection: 'row' }}>
               <Typography variant="body1">For example:</Typography>
-              <Link href={`https://www.theboysapi.com/api/episode/?season=1&episode=1`} variant="body1" sx={{ marginLeft: '5px' }}>
+              <Link href={`https://www.theboysapi.com/api/episode/?season=1&episode=1`} target="_blank" variant="body1" sx={{ marginLeft: '5px' }}>
                 https://www.theboysapi.com/api/episode/?season=1&episode=1
               </Link>
             </Box>
             <br />
             <Box display="flex">
               <Typography variant="body1">Any non-filterable or invalid parameters will be ignore. Find all filterable parameters</Typography>
-              <Link href={`/docs/#episodeSchema`} variant="body1" sx={{ marginLeft: '5px' }}>
+              <Link href={`/docs/#episodeSchema`} target="_blank" variant="body1" sx={{ marginLeft: '5px' }}>
                 here
               </Link>
             </Box>
