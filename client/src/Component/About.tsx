@@ -4,12 +4,10 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { THEME_COLOR } from '../Style';
 
-//todo: unity golbal style
 function About() {
   return (
     <Box
       sx={{
-        height: '100%vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

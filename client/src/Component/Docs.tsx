@@ -141,7 +141,15 @@ function Docs() {
     >
       <Drawer
         sx={{
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, marginTop: '64px', height: `calc(100vh - 64px)`, backgroundColor: THEME_COLOR.BACKGROUND_COLOR, position: 'absolute' }
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: drawerWidth,
+            marginTop: '64px',
+            height: `calc(100vh - 64px)`,
+            backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
+            position: 'absolute',
+            color: '#D7D6D2'
+          }
         }}
         variant="permanent"
         anchor="left"

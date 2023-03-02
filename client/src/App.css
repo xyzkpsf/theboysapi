@@ -13,6 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto Condensed', sans-serif;
+  color: #d7d6d2;
 }
 
 .root {
