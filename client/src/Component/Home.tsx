@@ -8,7 +8,9 @@ function Home() {
   return (
     <Box
       sx={{
-        backgroundColor: THEME_COLOR.BACKGROUND_COLOR
+        backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
+        height: `calc(100vh - 180px)`,
+        overflow: 'auto'
       }}
     >
       <Logo />

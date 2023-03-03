@@ -7,13 +7,12 @@ function Footer() {
   return (
     <Box
       sx={{
-        height: '200px',
+        height: '100px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '20px',
-        flexGrow: 1
+        paddingBottom: '20px'
       }}
     >
       <Box

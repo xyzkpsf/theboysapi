@@ -11,7 +11,9 @@ function About() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: THEME_COLOR.BACKGROUND_COLOR
+        backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
+        height: `calc(100vh - 180px)`,
+        overflow: 'auto'
       }}
     >
       <Box
