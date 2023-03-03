@@ -27,10 +27,10 @@ function Footer() {
         <Link variant="body1" target="_blank" href="https://www.theboysapi.com/api/character" underline="none">
           Character: 73
         </Link>
-        <Link variant="body1" target="_blank" href="https://www.theboysapi.com/api/character" underline="none">
+        <Link variant="body1" target="_blank" href="https://www.theboysapi.com/api/affiliation" underline="none">
           Affiliation: 22
         </Link>
-        <Link variant="body1" target="_blank" href="https://www.theboysapi.com/api/character" underline="none">
+        <Link variant="body1" target="_blank" href="https://www.theboysapi.com/api/episode" underline="none">
           Episode: 24
         </Link>
       </Box>
