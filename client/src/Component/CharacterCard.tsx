@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 import { CharacterCardProps, characterType } from '../Utils/types';
-import Paper from '@mui/material/Paper';
+import { THEME_COLOR } from '../Style';
 
 const CharacterCard = ({ data }: CharacterCardProps) => {
   const [hover, sethover] = useState(false);
@@ -49,12 +49,11 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
                 backgroundColor: 'white'
               }
             }}
-            // color="inherit"
             variant="outlined"
             href={data.url}
             target="_blank"
           >
-            More Info
+            Full data
           </Button>
         )}
       </Box>
@@ -81,7 +80,7 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '12px',
-          backgroundColor: '	#3C415C',
+          backgroundColor: THEME_COLOR.PRIMARY,
           justifyContent: 'center',
           alignItems: 'center'
         }}
@@ -112,7 +111,7 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
             component={'span'}
             variant="h6"
             sx={{
-              color: '#D3D3D3'
+              color: THEME_COLOR.TERTIARY
             }}
           >
             {data.name}

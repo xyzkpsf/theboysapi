@@ -148,7 +148,7 @@ function Docs() {
             height: `calc(100vh - 64px)`,
             backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
             position: 'absolute',
-            color: '#D7D6D2'
+            color: THEME_COLOR.TERTIARY
           }
         }}
         variant="permanent"

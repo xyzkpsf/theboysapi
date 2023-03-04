@@ -1,18 +1,10 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { styled, alpha } from '@mui/material/styles';
 import { THEME_COLOR } from '../Style';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -22,13 +14,11 @@ interface Props {
   window?: () => Window;
 }
 
-const drawerWidth = 240;
 const navItems = ['Docs', 'About'];
 
 export default function DrawerAppBar(props: Props) {
   const navigate = useNavigate();
 
-  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -42,33 +32,6 @@ export default function DrawerAppBar(props: Props) {
       navigate(`/`);
     }
   };
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ height: '160', color: 'white' }}>
-        <Box sx={{ display: 'flex', height: '50px', alignItems: 'center', alignSelf: 'center', justifyContent: 'center' }}>
-          <img src={logo} alt={'logo'} />
-        </Box>
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText
-                primary={item}
-                onClick={() => {
-                  console.log(`Click on ${item}`);
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex', backgroundColor: THEME_COLOR.BACKGROUND_COLOR }}>
@@ -103,28 +66,6 @@ export default function DrawerAppBar(props: Props) {
           </Box>
         </Toolbar>
       </AppBar>
-      {/*  <Box component="nav">*/}
-      {/*    <Drawer*/}
-      {/*      container={container}*/}
-      {/*      variant="temporary"*/}
-      {/*      open={mobileOpen}*/}
-      {/*      onClose={handleDrawerToggle}*/}
-      {/*      ModalProps={{*/}
-      {/*        keepMounted: true, // Better open performance on mobile.*/}
-      {/*      }}*/}
-      {/*      sx={{*/}
-      {/*        display: { xs: "block", sm: "none" },*/}
-      {/*        "& .MuiDrawer-paper": {*/}
-      {/*          boxSizing: "border-box",*/}
-      {/*          width: drawerWidth,*/}
-      {/*        },*/}
-      {/*      }}*/}
-      {/*    >*/}
-      {/*      {drawer}*/}
-      {/*    </Drawer>*/}
-      {/*  </Box>*/}
     </Box>
   );
 }
-
-// todo: 1.add btn in B icon, 2.add docs, 3.add about, 4.finalize the style
