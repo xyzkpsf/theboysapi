@@ -10,6 +10,7 @@ import { THEME_COLOR } from '../Style';
 
 const CharacterCard = ({ data }: CharacterCardProps) => {
   const [hover, sethover] = useState(false);
+  const [linkHover, setLinkHover] = useState(false);
 
   const mapStatusAndSpices = (data: characterType): JSX.Element => {
     const iconColor = data.status === 'Deceased' ? '#FF0000' : '#228B22';
@@ -22,40 +23,16 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
           height: '20px'
         }}
       >
-        {!hover && (
-          <>
-            <CircleIcon
-              sx={{
-                color: iconColor,
-                fontSize: '12px',
-                marginRight: '5px'
-              }}
-            />
-            <Typography component={'span'} variant="body1">
-              {data.status}
-            </Typography>
-          </>
-        )}
-        {hover && (
-          <Button
-            className={'more-info-button'}
-            sx={{
-              height: '20px',
-              backgroundColor: '#3C415C',
-              color: 'white',
-              border: '1px solid white',
-              '&:hover': {
-                color: '#3C415C',
-                backgroundColor: 'white'
-              }
-            }}
-            variant="outlined"
-            href={data.url}
-            target="_blank"
-          >
-            Full data
-          </Button>
-        )}
+        <CircleIcon
+          sx={{
+            color: iconColor,
+            fontSize: '12px',
+            marginRight: '5px'
+          }}
+        />
+        <Typography component={'span'} variant="body1">
+          {data.status}
+        </Typography>
       </Box>
     );
   };
@@ -82,7 +59,9 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
           borderRadius: '12px',
           backgroundColor: THEME_COLOR.PRIMARY,
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          transition: 'top ease 1s',
+          position: 'relative'
         }}
         onMouseEnter={() => sethover(true)}
         onMouseLeave={() => sethover(false)}
@@ -93,7 +72,9 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
             width: '200px',
             height: '150px',
             objectFit: 'cover',
-            borderRadius: '15px'
+            borderRadius: '15px',
+            transition: 'all .5s ease-in-out',
+            transform: hover ? 'scale(1.05)' : 'scale(1)'
           }}
           alt={data.name}
           src={data.image}
@@ -107,14 +88,17 @@ const CharacterCard = ({ data }: CharacterCardProps) => {
             fontSize: '20px'
           }}
         >
-          <Typography
-            component={'span'}
-            variant="h6"
-            sx={{
-              color: THEME_COLOR.TERTIARY
-            }}
-          >
-            {data.name}
+          <Typography component={'span'} variant="h6" onMouseEnter={() => setLinkHover(true)} onMouseLeave={() => setLinkHover(false)}>
+            <Link
+              sx={{
+                color: linkHover ? THEME_COLOR.SECONDARY : THEME_COLOR.TERTIARY
+              }}
+              href={data.url}
+              underline="none"
+              target="_blank"
+            >
+              {data.name}
+            </Link>
           </Typography>
           {mapStatusAndSpices(data)}
         </Box>
