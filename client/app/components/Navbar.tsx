@@ -19,7 +19,7 @@ export default function Navbar() {
         <Link href={"/"} className="hover:text-SECONDARY">
           Docs
         </Link>
-        <Link href={"/"} className="hover:text-SECONDARY">
+        <Link href={"/about"} className="hover:text-SECONDARY">
           About
         </Link>
         <Link href={"/"} className="hover:text-SECONDARY">
