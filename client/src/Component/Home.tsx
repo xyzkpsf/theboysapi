@@ -9,7 +9,7 @@ function Home() {
     <Box
       sx={{
         backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
-        height: `calc(100vh - 180px)`,
+        // height: `calc(100vh - 180px)`,
         overflow: 'auto'
       }}
     >

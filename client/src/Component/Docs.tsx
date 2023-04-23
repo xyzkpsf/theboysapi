@@ -136,7 +136,7 @@ function Docs() {
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
-        height: `calc(100vh - 80px)`
+        height: `calc(100vh - 220px)`
       }}
     >
       <Drawer
@@ -169,7 +169,7 @@ function Docs() {
       >
         <Box
           sx={{
-            height: `calc(100vh - 180px)`,
+            height: `calc(100vh - 220px)`,
             overflow: 'auto',
             display: 'flex',
             justifyContent: 'center'

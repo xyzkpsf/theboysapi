@@ -12,7 +12,7 @@ function About() {
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: THEME_COLOR.BACKGROUND_COLOR,
-        height: `calc(100vh - 180px)`,
+        minHeight: `calc(100vh - 220px)`,
         overflow: 'auto'
       }}
     >

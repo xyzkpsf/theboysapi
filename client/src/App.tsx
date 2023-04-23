@@ -13,16 +13,15 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'auto' }}>
-        <Box sx={{ minHeight: '100%', marginBottom: '-100px' }}>
-          <TopBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/docs" element={<Docs />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </Box>
-        <Box sx={{ height: '100px' }} />
+      <Box sx={{ display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
+        {/* <Box sx={{ minHeight: '100%' }}> */}
+        <TopBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/docs" element={<Docs />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        {/* </Box> */}
         <Footer />
       </Box>
     </QueryClientProvider>

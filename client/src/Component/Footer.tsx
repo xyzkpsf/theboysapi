@@ -18,7 +18,9 @@ function Footer() {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: '20px'
+        marginTop: '20px',
+        marginBottom: '20px'
+        // paddingBottom: '20px'
       }}
     >
       <Box
